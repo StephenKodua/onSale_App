@@ -24,7 +24,7 @@ Users can also post their items for sale.
 
 ### Product Spec
 
-### 1. User Stories (Required and Optional) //Manager to help determine required and optional and more features
+#### 1. User Stories (Required and Optional) 
 
 Required Must-have Stories
 
