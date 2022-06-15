@@ -23,17 +23,17 @@ Product Spec
 Required Must-have Stories
 
  * [ ] Users are able to login/sign-up/logout from the application
- Users are able to navigate to various shop from categories (electronics, appliances etc) and stores (amazon, apple store etc)
- Users are able to see original and reduced price tags 
- Users are able to add items to cart to check out 
- Users have a profile to display username, orders, wish list, recently viewed, and sign out. 
- Users are able to publish their items for sale 
- Optional Nice-to-have Stories
+ * [ ] Users are able to navigate to various shop from categories and stores 
+ * [ ] Users are able to see original and reduced price tags 
+ * [ ] Users are able to add items to cart to check out 
+ * [ ] Users have a profile to display username, orders, wish list, recently viewed, and sign out.  
+ * [ ] Users can search for categories and stores
+ * [ ] Users are able to publish their items for sale
 
- Users can remove items from cart and wishlist.
- Users can search for different categories.
- Users can leave reviews of items purchased
- Users can share an item to a friend outside the application
+ * [ ] Users can remove items from cart and wishlist.
+ * [ ] Users can search for different categories.
+ * [ ] Users can leave reviews of items purchased
+ * [ ] Users can share an item to a friend outside the application
  
 2. Screen Archetypes
 
