@@ -40,7 +40,7 @@ Login/ Sign-up Screen
 Users can login or sign-up
 Users can use facebook/google/apple account to login/sign-up
 
-Main Screen
+### Main Screen
 
 Users can view and browse various categories and stores
 Users are able to click on the profile and view cart, orders, orders, wish list, recently viewed, and sign out
