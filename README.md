@@ -1,4 +1,4 @@
-*onSale App* 
+onSale App
 
 Description
 
