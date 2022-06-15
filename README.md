@@ -22,7 +22,7 @@ Users can also post their items for sale.
 - Habit: The users would open this app anytime they want to buy or sell items. Users can navigate to various categories and buy or sell items.
 - Scope: The application would have the core feature of dsiplaying various categories and shops to shop. Users can browse through items in various shops, and selected desired items to be added to cart. 
 
-### Product Spec
+## Product Spec
 
 #### 1. User Stories (Required and Optional) 
 
@@ -40,7 +40,7 @@ Required Must-have Stories
  * [ ] Users can share an item to a friend outside the application
  * [ ] Users are able to publish their items for sale
  
-2. Screen Archetypes
+#### 2. Screen Archetypes
 
 Login/ Sign-up Screen
 Users can login or sign-up
@@ -52,7 +52,7 @@ Users can view and browse various categories and stores
 Users are able to click on the profile and view cart, orders, orders, wish list, recently viewed, and sign out
 
 
-3. Navigation
+#### 3. Navigation
 
 Tab Navigation (Tab to Screen)
 
