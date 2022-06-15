@@ -1,11 +1,11 @@
 # onSale App
 
-# Description
+Description
 
 The application allows users to buy items put on sale from differnt shops and categories. 
 Users can also post their items for sale.
 
-# App Evaluation
+App Evaluation
 
 [Evaluation of app across the following attributes]
 
@@ -16,11 +16,11 @@ Market: The app would be targeted towards those who desire to shop items on sale
 Habit: The users would open this app anytime they want to buy or sell items. Users can navigate to various categories and buy or sell items.
 Scope: The application would have the core feature of dsiplaying various categories and shops to shop. Users can browse through items in various shops, and selected desired items to be added to cart. 
 
-# Product Spec
+Product Spec
 
-# 1. User Stories (Required and Optional) //Manager to help determine required and optional and more features
+1. User Stories (Required and Optional) //Manager to help determine required and optional and more features
 
-# Required Must-have Stories
+Required Must-have Stories
 
  * [ ] Users are able to login/sign-up/logout from the application
  * [ ] Users are able to navigate to various shop from categories and stores 
@@ -34,19 +34,19 @@ Scope: The application would have the core feature of dsiplaying various categor
  * [ ] Users can share an item to a friend outside the application
  * [ ] Users are able to publish their items for sale
  
-# 2. Screen Archetypes
+2. Screen Archetypes
 
 Login/ Sign-up Screen
 Users can login or sign-up
 Users can use facebook/google/apple account to login/sign-up
 
-# Main Screen
+Main Screen
 
 Users can view and browse various categories and stores
 Users are able to click on the profile and view cart, orders, orders, wish list, recently viewed, and sign out
 
 
-# 3. Navigation
+3. Navigation
 
 Tab Navigation (Tab to Screen)
 
