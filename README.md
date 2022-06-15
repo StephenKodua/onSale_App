@@ -1,4 +1,4 @@
-onSale App
+# onSale App
 
 Description
 
@@ -22,7 +22,7 @@ Product Spec
 
 Required Must-have Stories
 
- Users are able to login/sign-up/logout from the application
+ *[x] Users are able to login/sign-up/logout from the application
  Users are able to navigate to various shop from categories (electronics, appliances etc) and stores (amazon, apple store etc)
  Users are able to see original and reduced price tags 
  Users are able to add items to cart to check out 
