@@ -29,17 +29,21 @@ Users can also post their items for sale.
 Required Must-have Stories
 
  * [ ] Users are able to login/sign-up/logout from the application
- * [ ] Users are able to navigate to various shop from categories and stores 
- * [ ] Users are able to see original and reduced price tags 
- * [ ] Users are able to add items to cart to check out 
- * [ ] Users have a profile to display username, orders, wish list, recently viewed, and sign out.  
- * [ ] Users can search for categories and stores
- * [ ] Users can remove items from cart and wishlist.
- * [ ] Users can search for different categories.
+ * [ ] Users are able to navigate to various shop from categories and stores  
+ * [ ] Users have a profile to display username, cart, wishlist, and sign out
+ * [ ] Users can view on the main screen list of items including name, image, original and reduced price
+ * [ ] Users can click on item to view description, image name, original and reduced price,and option to add to cart or wishlist
+ * [ ] Users can double touble tap item to add to cart
+ * [ ] Users can zoom in and out of item images
+
+
+Optional Stories
+ * [ ] Users can publish their items for sale with image, name, description, and price tags
  * [ ] Users can leave reviews of items purchased
- * [ ] Users can share an item to a friend outside the application
- * [ ] Users are able to publish their items for sale
- 
+ * [ ] Users can search for different categories
+ * [ ] Users can share item accross different platforms (whatsapp, facebook, etc)
+ * [ ] Users can narrow down items based on desired item prices
+
 #### 2. Screen Archetypes
 
 Login/ Sign-up Screen
@@ -49,7 +53,7 @@ Users can use facebook/google/apple account to login/sign-up
 ### Main Screen
 
 Users can view and browse various categories and stores
-Users are able to click on the profile and view cart, orders, orders, wish list, recently viewed, and sign out
+Users are able to click on the profile and view cart, wishlist, and sign out
 
 
 #### 3. Navigation
