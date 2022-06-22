@@ -60,6 +60,8 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
+
+    //Launches loginActivity
     private void goLoginActivity() {
         Intent i = new Intent (this, LoginActivity.class);
         startActivity(i);
