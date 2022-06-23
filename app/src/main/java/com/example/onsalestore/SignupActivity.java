@@ -43,7 +43,8 @@ public class SignupActivity extends AppCompatActivity {
                 else{
                     //TODO
                     // Take appropriate action
-                    return;
+                    PasswordConfirm.setError("Password does not match");
+
                 }
 
                 user.signUpInBackground(new SignUpCallback() {
@@ -63,7 +64,6 @@ public class SignupActivity extends AppCompatActivity {
 
     //Launches loginActivity
     private void goLoginActivity() {
-        Intent i = new Intent (this, LoginActivity.class);
-        startActivity(i);
+        startActivity(new Intent (this, LoginActivity.class));
     }
 }

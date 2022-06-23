@@ -24,11 +24,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //Checks if user already logged in
-        if (ParseUser.getCurrentUser() != null){
-            goMainActivity();
-        }
-
         etUsername = findViewById(R.id.signupUsername);
         etPassword = findViewById(R.id.signupPassword);
         loginText = findViewById(R.id.LoginText);
@@ -53,14 +48,13 @@ public class LoginActivity extends AppCompatActivity {
                     // for example notify user or send user to login again
                     return;
                 }
-                goMainActivity();
+                goToMainActivity();
             }
         });
     }
 
     //Launch MainActivity
-    private void goMainActivity() {
-        Intent i = new Intent (this, MainActivity.class);
-        startActivity(i);
+    private void goToMainActivity() {
+        startActivity(new Intent (this, MainActivity.class));
     }
 }
