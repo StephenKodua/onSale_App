@@ -12,7 +12,7 @@ import com.parse.ParseUser;
 
 //launch with an empty fragment
 //replace empty fragment with a login fragment
-public class MainActivityFragment extends AppCompatActivity {
+public class AuthenticationActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FragmentTransaction fragmentTransaction;

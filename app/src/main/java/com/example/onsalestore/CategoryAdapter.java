@@ -21,9 +21,9 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Viewholder> {
     public final String TAG = "CategoryAdapter";
     private Context context;
-    private List<Categories>categories;
+    private List<Category>categories;
 
-    public CategoryAdapter (Context context, ArrayList<Categories> categories){
+    public CategoryAdapter (Context context, ArrayList<Category> categories){
         this.context = context;
         this.categories = categories;
     }
@@ -40,7 +40,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Viewho
     //bind data to each individual item
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
-        Categories category = categories.get(position);
+        Category category = categories.get(position);
         holder.bind(category);
 
     }
@@ -60,7 +60,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Viewho
             rvImage = itemView.findViewById(R.id.rvImage);
         }
 
-        public void bind(Categories category) {
+        public void bind(Category category) {
 
             rvName.setText(category.getName());
             ParseFile image = category.getImage();
@@ -69,5 +69,4 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Viewho
             }
         }
     }
-
 }

@@ -1,7 +1,6 @@
 package com.example.onsalestore;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +17,12 @@ import com.parse.ParseFile;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoresAdapter extends RecyclerView.Adapter<StoresAdapter.Viewholder> {
+public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.Viewholder> {
     public final String TAG = "StoresAdapter";
     private Context context;
-    private List<Stores> stores;
+    private List<Store> stores;
 
-    public StoresAdapter(Context context, ArrayList<Stores> stores) {
+    public StoreAdapter(Context context, ArrayList<Store> stores) {
         this.context = context;
         this.stores = stores;
     }
@@ -39,7 +38,7 @@ public class StoresAdapter extends RecyclerView.Adapter<StoresAdapter.Viewholder
     //bind data to each individual item
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
-        Stores store = stores.get(position);
+        Store store = stores.get(position);
         holder.bind(store);
     }
 
@@ -59,7 +58,7 @@ public class StoresAdapter extends RecyclerView.Adapter<StoresAdapter.Viewholder
             rvStoreImage = itemView.findViewById(R.id.rvStoreImage);
         }
 
-        public void bind(Stores store) {
+        public void bind(Store store) {
             rvStoreName.setText(store.getName());
             ParseFile image = store.getImage();
             if (image != null) {

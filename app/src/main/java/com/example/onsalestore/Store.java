@@ -1,13 +1,14 @@
 package com.example.onsalestore;
 
+
 import com.parse.Parse;
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
-@ParseClassName("Categories")
-public class Categories extends ParseObject {
+@ParseClassName("Stores")
+public class Store extends ParseObject {
     public static final String KEY_NAME = "name";
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";

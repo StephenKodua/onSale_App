@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -23,26 +22,24 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     //UI contents
-    private TextView tvDeals, tvBuyandsell;
+    private TextView tvDeals, tvBuyAndSell;
     private ImageView imgMain;
-    private Boolean FirstImageDisplaying = false; //determine if a certain image is displaying
+    private Boolean firstImageDisplaying = false; //determine if a certain image is displaying
 
     //categories variables
     private RecyclerView rvHorizontal;
-    protected CategoryAdapter adapter;
-    protected ArrayList<Categories> allCategories;
+    protected CategoryAdapter categoryAdapter;
+    protected ArrayList<Category> allCategories;
 
     //store variables
     private RecyclerView rvStoreHorizontal;
-    protected StoresAdapter storesadapter;
-    protected ArrayList<Stores> allStores;
+    protected StoreAdapter storesAdapter;
+    protected ArrayList<Store> allStores;
 
 
     @Override
@@ -52,19 +49,19 @@ public class MainActivity extends AppCompatActivity {
 
         //UI contents
         tvDeals = findViewById(R.id.tvDeals);
-        tvBuyandsell = findViewById(R.id.tvBuyandSell);
+        tvBuyAndSell = findViewById(R.id.tvBuyAndSell);
         imgMain = findViewById(R.id.imgMain);
 
         imgMain.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (FirstImageDisplaying) {
+                if (firstImageDisplaying) {
                     imgMain.setImageResource(R.drawable.kids);
-                    FirstImageDisplaying = false;
+                    firstImageDisplaying = false;
 
                 } else {
                     imgMain.setImageResource(R.drawable.shopping);
-                    FirstImageDisplaying = true;
+                    firstImageDisplaying = true;
                 }
                 return false;
             }
@@ -74,49 +71,49 @@ public class MainActivity extends AppCompatActivity {
         //categories
         rvHorizontal = findViewById(R.id.rvHorizontal);
         allCategories = new ArrayList<>();
-        adapter = new CategoryAdapter(this, allCategories);
-        LinearLayoutManager CategoriesLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        categoryAdapter = new CategoryAdapter(this, allCategories);
+        LinearLayoutManager categoriesLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         rvHorizontal = (RecyclerView) findViewById(R.id.rvHorizontal);
-        rvHorizontal.setLayoutManager(CategoriesLayoutManager);
-        rvHorizontal.setAdapter(adapter);
-        CategoriesQueryPosts();
+        rvHorizontal.setLayoutManager(categoriesLayoutManager);
+        rvHorizontal.setAdapter(categoryAdapter);
+        categoriesQueryPosts();
 
         //stores
         rvStoreHorizontal = findViewById(R.id.rvStoreHorizontal);
         allStores = new ArrayList<>();
-        storesadapter = new StoresAdapter(this, allStores);
-        LinearLayoutManager StoresLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        storesAdapter = new StoreAdapter(this, allStores);
+        LinearLayoutManager storesLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         rvStoreHorizontal = (RecyclerView) findViewById(R.id.rvStoreHorizontal);
-        rvStoreHorizontal.setLayoutManager(StoresLayoutManager);
-        rvStoreHorizontal.setAdapter(storesadapter);
-        StoresQueryPosts();
+        rvStoreHorizontal.setLayoutManager(storesLayoutManager);
+        rvStoreHorizontal.setAdapter(storesAdapter);
+        storesQueryPosts();
     }
 
-    private void CategoriesQueryPosts() {
-        ParseQuery<Categories> query = ParseQuery.getQuery(Categories.class);
-        query.findInBackground(new FindCallback<Categories>() {
+    private void categoriesQueryPosts() {
+        ParseQuery<Category> query = ParseQuery.getQuery(Category.class);
+        query.findInBackground(new FindCallback<Category>() {
             @Override
-            public void done(List<Categories> categories, ParseException e) {
+            public void done(List<Category> categories, ParseException e) {
                 if (e != null) {
                     return;
                 }
                 // save received posts to list and notify adapter of new data
                 allCategories.addAll(categories);
-                adapter.notifyDataSetChanged();
+                categoryAdapter.notifyDataSetChanged();
             }
         });
     }
 
-    private void StoresQueryPosts() {
-        ParseQuery<Stores> query = ParseQuery.getQuery(Stores.class);
-        query.findInBackground(new FindCallback<Stores>() {
+    private void storesQueryPosts() {
+        ParseQuery<Store> query = ParseQuery.getQuery(Store.class);
+        query.findInBackground(new FindCallback<Store>() {
             @Override
-            public void done(List<Stores> stores, ParseException e) {
+            public void done(List<Store> stores, ParseException e) {
                 if (e != null) {
                     return;
                 }
                 allStores.addAll(stores);
-                storesadapter.notifyDataSetChanged();
+                storesAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -135,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
             ParseUser.logOutInBackground(new LogOutCallback() {
                 public void done(ParseException e) {
                     if (e == null) {
-                        goToLoginFragment();
+                        returnToAuthentication();
                     } else {
                         Toast.makeText(MainActivity.this, "Error signing out", Toast.LENGTH_SHORT).show();
                     }
@@ -146,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Launch Login Fragment
-    private void goToLoginFragment() {
-        startActivity(new Intent(this, MainActivityFragment.class));
+    private void returnToAuthentication(){
+        startActivity(new Intent(this, AuthenticationActivity.class));
     }
 }
