@@ -21,13 +21,7 @@
             android:name="com.example.onsalestore.MainActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.onsalestore.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.example.onsalestore.SignupActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.example.onsalestore.LaunchActivity"
+            android:name="com.example.onsalestore.MainActivityFragment"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

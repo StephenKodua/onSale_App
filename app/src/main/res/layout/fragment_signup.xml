@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.onsalestore.SignupFragment">
+
+    <EditText
+        android:id="@+id/etSignupUsername"
+        android:layout_width="268dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="208dp"
+        android:ems="10"
+        android:hint="Enter Username"
+        android:inputType="textPersonName"
+        android:textAlignment="viewStart"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/etCreateAccount"
+        app:layout_constraintHorizontal_bias="0.723"
+        app:layout_constraintStart_toStartOf="@+id/etCreateAccount"
+        app:layout_constraintTop_toBottomOf="@+id/etCreateAccount" />
+
+    <EditText
+        android:id="@+id/etSignupPassword"
+        android:layout_width="268dp"
+        android:layout_height="38dp"
+        android:ems="10"
+        android:hint="Enter Password"
+        android:inputType="textPersonName"
+        android:textAlignment="viewStart"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/etSignupUsername"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/etSignupUsername"
+        app:layout_constraintTop_toBottomOf="@+id/etSignupUsername" />
+
+    <EditText
+        android:id="@+id/etPasswordConfirmation"
+        android:layout_width="267dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/etSignupPassword"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/etSignupPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etSignupPassword" />
+
+    <TextView
+        android:id="@+id/etCreateAccount"
+        android:layout_width="315dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="44dp"
+        android:text="Create your Account"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/etSignupUsername"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.437" />
+
+    <Button
+        android:id="@+id/btnSignup"
+        android:layout_width="265dp"
+        android:layout_height="37dp"
+        android:text="SIGN UP"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/etPasswordConfirmation"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/etPasswordConfirmation"
+        app:layout_constraintTop_toBottomOf="@+id/etPasswordConfirmation"
+        app:layout_constraintVertical_bias="0.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>
