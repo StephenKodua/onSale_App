@@ -10,7 +10,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        //adding Jitpack
+        maven { url "https://jitpack.io" }
     }
 }
-rootProject.name = "onSaleStore"
+rootProject.name = "onSale"
 include ':app'
