@@ -11,10 +11,12 @@
         <entry key="app/src/main/res/layout/activity_main_fragment.xml" value="0.33125" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.5" />
         <entry key="app/src/main/res/layout/category_item.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/clothing_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_launch.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.3671875" />
         <entry key="app/src/main/res/layout/fragment_sign.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.33125" />
+        <entry key="app/src/main/res/layout/sales_item_layout.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/store_item.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.9661458333333334" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.335" />

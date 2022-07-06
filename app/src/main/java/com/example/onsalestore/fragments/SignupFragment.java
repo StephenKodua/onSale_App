@@ -1,4 +1,4 @@
-package com.example.onsalestore;
+package com.example.onsalestore.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.onsale.R;
+import com.example.onsalestore.activities.MainActivity;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;

@@ -1,4 +1,4 @@
-package com.example.onsalestore;
+package com.example.onsalestore.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.onsale.R;
+import com.example.onsalestore.fragments.LoginFragment;
 import com.parse.ParseUser;
 
 //launch with an empty fragment
@@ -24,7 +25,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         if (ParseUser.getCurrentUser() != null) {
             startActivity(new Intent(this, MainActivity.class));
         }
-        setContentView(R.layout.activity_main_fragment);
+        setContentView(R.layout.activity_authentication_fragment);
         addFragment();
     }
 
