@@ -11,8 +11,6 @@ import com.example.onsale.R;
 import com.example.onsalestore.fragments.LoginFragment;
 import com.parse.ParseUser;
 
-//launch with an empty fragment
-//replace empty fragment with a login fragment
 public class AuthenticationActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
@@ -25,7 +23,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         if (ParseUser.getCurrentUser() != null) {
             startActivity(new Intent(this, MainActivity.class));
         }
-        setContentView(R.layout.activity_authentication_fragment);
+        setContentView(R.layout.activity_authentication);
         addFragment();
     }
 
@@ -33,7 +31,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         LoginFragment fragment = new LoginFragment();
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragmentContainer, fragment);
+        fragmentTransaction.add(R.id.loginFragmentContainer, fragment);
         fragmentTransaction.commit();
     }
 }

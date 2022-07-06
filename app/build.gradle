@@ -47,6 +47,7 @@ dependencies {
     implementation 'com.codepath.libraries:asynchttpclient:2.2.0'
     implementation 'org.parceler:parceler-api:1.1.12'
     annotationProcessor 'org.parceler:parceler:1.1.12'
+    implementation 'com.google.android.gms:play-services-auth:20.2.0'
 
 
 }

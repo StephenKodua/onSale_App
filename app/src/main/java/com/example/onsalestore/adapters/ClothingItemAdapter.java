@@ -1,6 +1,7 @@
 package com.example.onsalestore.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.onsale.R;
+import com.example.onsalestore.activities.ItemDetailActivity;
 import com.example.onsalestore.objects.ClothingItem;
 
-import java.util.List;
+import org.parceler.Parcels;
 
+import java.util.List;
 
 public class ClothingItemAdapter extends RecyclerView.Adapter<ClothingItemAdapter.ViewHolder> {
     private Context context;
@@ -45,9 +48,10 @@ public class ClothingItemAdapter extends RecyclerView.Adapter<ClothingItemAdapte
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView itemName, itemPrice;
-        private ImageView itemImage, itemDetailImage;
-        private TextView itemDetailName, itemDetailPrice, itemDetailSource;
+        private TextView itemName;
+        private TextView itemPrice;
+        private ImageView itemImage;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -56,6 +60,16 @@ public class ClothingItemAdapter extends RecyclerView.Adapter<ClothingItemAdapte
             itemImage = itemView.findViewById(R.id.itemImage);
 
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    ClothingItem item = itemsList.get(position);
+                    Intent intent = new Intent(context, ItemDetailActivity.class);
+                    intent.putExtra("EXTRA_ITEM", Parcels.wrap(item));
+                    context.startActivity(intent);
+                }
+            });
         }
 
         public void bind(ClothingItem item) {
