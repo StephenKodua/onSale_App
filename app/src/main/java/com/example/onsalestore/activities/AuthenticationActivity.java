@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.onsale.R;
+import com.example.onsalestore.fragments.LaunchFragment;
 import com.example.onsalestore.fragments.LoginFragment;
 import com.parse.ParseUser;
 
@@ -28,7 +29,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     }
 
     public void addFragment() {
-        LoginFragment fragment = new LoginFragment();
+        LaunchFragment fragment = new LaunchFragment();
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.loginFragmentContainer, fragment);

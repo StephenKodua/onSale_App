@@ -56,7 +56,7 @@
         android:id="@+id/btnAddToCloset"
         android:layout_width="190dp"
         android:layout_height="50dp"
-        android:text="Button"
+        android:text="Add To Closet"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -64,7 +64,7 @@
         android:id="@+id/btnNotNow"
         android:layout_width="193dp"
         android:layout_height="50dp"
-        android:text="Button"
+        android:text="Later"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
