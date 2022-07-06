@@ -1,4 +1,4 @@
-package com.example.onsalestore.objects;
+package com.example.onsalestore.applications;
 
 import android.app.Application;
 
