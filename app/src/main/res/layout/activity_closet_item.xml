@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/closetItemImage"
+            android:id="@+id/ivClosetItemImage"
             android:layout_width="320dp"
             android:scaleType="centerCrop"
             android:layout_height="252dp"
@@ -26,7 +26,7 @@
             android:src="@drawable/jordans" />
 
         <TextView
-            android:id="@+id/closetItemName"
+            android:id="@+id/tvClosetItemName"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:text="Nike Air Max"

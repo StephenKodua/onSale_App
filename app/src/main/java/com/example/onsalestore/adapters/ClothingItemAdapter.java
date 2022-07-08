@@ -49,15 +49,15 @@ public class ClothingItemAdapter extends RecyclerView.Adapter<ClothingItemAdapte
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView itemName;
-        private TextView itemPrice;
-        private ImageView itemImage;
+        private TextView tvClothingName;
+        private TextView tvClothingPrice;
+        private ImageView ivClothingImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemName = itemView.findViewById(R.id.tvClothingName);
-            itemPrice = itemView.findViewById(R.id.tvClothingPrice);
-            itemImage = itemView.findViewById(R.id.ivClothingImage);
+            tvClothingName = itemView.findViewById(R.id.tvClothingName);
+            tvClothingPrice = itemView.findViewById(R.id.tvClothingPrice);
+            ivClothingImage = itemView.findViewById(R.id.ivClothingImage);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -72,11 +72,11 @@ public class ClothingItemAdapter extends RecyclerView.Adapter<ClothingItemAdapte
         }
 
         public void bind(ClothingItem item) {
-            itemName.setText(item.getItemName());
-            itemPrice.setText(item.getItemPrice());
+            tvClothingName.setText(item.getItemName());
+            tvClothingPrice.setText(item.getItemPrice());
             String image = item.getItemImageUrl();
             if (image != null) {
-                Glide.with(context).load(image).into(itemImage);
+                Glide.with(context).load(image).into(ivClothingImage);
             }
         }
     }

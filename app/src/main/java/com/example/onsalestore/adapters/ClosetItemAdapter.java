@@ -45,21 +45,21 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView closetItemName;
-        private ImageView closetItemImage;
+        private TextView tvClosetItemName;
+        private ImageView ivClosetItemImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            closetItemName = itemView.findViewById(R.id.closetItemName);
-            closetItemImage = itemView.findViewById(R.id.closetItemImage);
+            tvClosetItemName = itemView.findViewById(R.id.tvClosetItemName);
+            ivClosetItemImage = itemView.findViewById(R.id.ivClosetItemImage);
         }
 
         public void bind(ClosetItem item) {
             Log.d("ClosetItemAdapter", item.getItemName());
-            closetItemName.setText(item.getItemName());
+            tvClosetItemName.setText(item.getItemName());
             String image = item.getItemImageUrl();
             if (image != null) {
-                Glide.with(context).load(image).into(closetItemImage);
+                Glide.with(context).load(image).into(ivClosetItemImage);
             }
         }
     }
