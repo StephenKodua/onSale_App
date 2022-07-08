@@ -2,6 +2,7 @@ package com.example.onsalestore.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,13 +53,11 @@ public class ClothingItemAdapter extends RecyclerView.Adapter<ClothingItemAdapte
         private TextView itemPrice;
         private ImageView itemImage;
 
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemName = itemView.findViewById(R.id.itemName);
-            itemPrice = itemView.findViewById(R.id.itemPrice);
-            itemImage = itemView.findViewById(R.id.itemImage);
-
+            itemName = itemView.findViewById(R.id.tvClothingName);
+            itemPrice = itemView.findViewById(R.id.tvClothingPrice);
+            itemImage = itemView.findViewById(R.id.ivClothingImage);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -75,7 +74,6 @@ public class ClothingItemAdapter extends RecyclerView.Adapter<ClothingItemAdapte
         public void bind(ClothingItem item) {
             itemName.setText(item.getItemName());
             itemPrice.setText(item.getItemPrice());
-
             String image = item.getItemImageUrl();
             if (image != null) {
                 Glide.with(context).load(image).into(itemImage);

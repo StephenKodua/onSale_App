@@ -25,6 +25,4 @@ public class ClosetItem extends ParseObject {
 
     public void setItemImageUrl(String imageUrl){put(KEY_ITEM_IMAGE_URL,imageUrl);}
 
-
-
 }

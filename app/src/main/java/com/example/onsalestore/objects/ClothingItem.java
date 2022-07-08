@@ -9,16 +9,19 @@ public class ClothingItem {
     private String itemImageUrl;
     private String itemPrice;
     private String itemSource;
+    private String itemUrl;
 
     public ClothingItem(){
 
     }
 
-    public ClothingItem(String itemName, String itemImageUrl, String itemPrice, String itemSource){
+    public ClothingItem(String itemName, String itemImageUrl, String itemPrice, String itemSource, String
+                        itemUrl){
         this.itemName = itemName;
         this.itemImageUrl = itemImageUrl;
         this.itemPrice = itemPrice;
         this.itemSource = itemSource;
+        this.itemUrl = itemUrl;
     }
 
     public String getItemName(){return itemName;}
@@ -28,4 +31,6 @@ public class ClothingItem {
     public String getItemPrice(){return itemPrice;}
 
     public String getItemSource(){return itemSource; }
+
+    public String getItemUrl(){return itemUrl; }
 }

@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.17765273311897106" />
+        <entry key="app/src/main/res/drawable-v24/ic_vector_heart.xml" value="0.173" />
         <entry key="app/src/main/res/layout/activity_authentication.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_authentication_fragment.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_category.xml" value="0.17777777777777778" />
+        <entry key="app/src/main/res/layout/activity_closet_item.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_item_detail.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/activity_launch.xml" value="0.67" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2533073591731808" />
@@ -15,6 +17,7 @@
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.5" />
         <entry key="app/src/main/res/layout/category_item.xml" value="0.45" />
         <entry key="app/src/main/res/layout/clothing_item.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_closet.xml" value="0.38144073486328123" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.10729166666666666" />
         <entry key="app/src/main/res/layout/fragment_launch.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.3671875" />

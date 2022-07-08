@@ -92,11 +92,10 @@ public class HomeFragment extends Fragment {
                         String productSource = jsonObject.getString("source");
                         String productName = jsonObject.getString("title");
                         String productPrice = jsonObject.getString("price");
-
-                        ClothingItem productItem = new ClothingItem(productName, productImageUrl, productPrice, productSource);
+                        String productUrl = jsonObject.getString("url");
+                        ClothingItem productItem = new ClothingItem(productName, productImageUrl, productPrice, productSource, productUrl);
                         items.add(productItem);
                     }
-
                     allItems.addAll(items);
                     itemAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {

@@ -22,10 +22,9 @@ public class LaunchFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (ParseUser.getCurrentUser() != null){
+        if (ParseUser.getCurrentUser() != null) {
             startActivity(new Intent(getContext(), MainActivity.class));
         }
-
     }
 
     @Override

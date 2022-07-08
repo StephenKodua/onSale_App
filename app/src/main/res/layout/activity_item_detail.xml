@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,13 +9,14 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="428dp"
+        android:layout_width="408dp"
+        android:layout_height="477dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+
             android:id="@+id/itemDetailImage"
             android:layout_width="match_parent"
             android:layout_height="273dp"
@@ -25,6 +27,7 @@
             android:src="@drawable/jordans" />
 
         <TextView
+
             android:id="@+id/itemDetailName"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -49,6 +52,22 @@
             android:textColor="#595656"
             android:textSize="16sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/itemDetailUrl"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="https://www.metacareers.com"
+            android:textColor="#1F3CDC"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tbDetailItemActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
 
     </LinearLayout>
 
