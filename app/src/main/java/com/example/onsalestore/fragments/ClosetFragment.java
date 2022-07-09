@@ -16,8 +16,13 @@ import com.example.onsalestore.adapters.ClosetItemAdapter;
 
 import com.example.onsalestore.objects.ClosetItem;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,22 +48,40 @@ public class ClosetFragment extends Fragment {
         closetItemAdapter = new ClosetItemAdapter(getContext(), allClosetItems);
         rvClosetItems.setAdapter(closetItemAdapter);
         rvClosetItems.setLayoutManager(new LinearLayoutManager(getContext()));
-        queryClosetItems();
+        populateClosetItemsList();
 
         return view;
     }
 
-    private void queryClosetItems() {
+    private void populateClosetItemsList() {
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        JSONArray itemsInCloset = currentUser.getJSONArray("closet");
+        if (itemsInCloset == null) {
+            return;
+        }
+        for (int i = 0; i < itemsInCloset.length(); ++i) {
+            try {
+                JSONObject closetItem = (JSONObject) itemsInCloset.get(i);
+                String itemId = (String) closetItem.get("objectId");
+                queryClosetItems(itemId);
+            } catch (Exception e) {
+                //TODO: Decide how to handle this exception later
+            }
+        }
+    }
+
+    private void queryClosetItems(String itemId) {
         ParseQuery<ClosetItem> query = ParseQuery.getQuery(ClosetItem.class);
-        //query.include(ClosetItem.KEY_USER);
-        query.findInBackground(new FindCallback<ClosetItem>() {
+        query.addDescendingOrder("createdAt");
+        query.getInBackground(itemId, new GetCallback<ClosetItem>() {
             @Override
-            public void done(List<ClosetItem> stores, ParseException e) {
-                if (e != null) {
-                    return;
+            public void done(ClosetItem object, ParseException e) {
+                if (e == null) {
+                    allClosetItems.add(object);
+                    closetItemAdapter.notifyDataSetChanged();
+                } else {
+                    //TODO: Decide how to handle this exception later
                 }
-                allClosetItems.addAll(stores);
-                closetItemAdapter.notifyDataSetChanged();
             }
         });
     }
