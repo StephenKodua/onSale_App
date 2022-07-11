@@ -1,73 +1,76 @@
 package com.example.onsalestore.fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.onsale.R;
 import com.example.onsalestore.activities.AuthenticationActivity;
-import com.example.onsalestore.activities.MainActivity;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.parse.FindCallback;
 import com.parse.LogOutCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.io.File;
+import java.util.List;
+
 public class ProfileFragment extends Fragment {
-    //Google logout contents
-    private GoogleSignInOptions googleSignInOptions;
-    private GoogleSignInClient googleSignInClient;
 
     Button btnSignOut;
+    TextView userName, numberOfPost, numberOfClosetItems;
+    ImageView userProfileImage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_profile_item, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        //Google logout contents
-        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        googleSignInClient = GoogleSignIn.getClient(getContext(), googleSignInOptions);
-
+        userName = view.findViewById(R.id.profileUserName);
+        numberOfPost = view.findViewById(R.id.numberOfPost);
+        numberOfClosetItems = view.findViewById(R.id.numberOfClosetItem);
+        userProfileImage = view.findViewById(R.id.userProfileImage);
         btnSignOut = view.findViewById(R.id.btnSignOut);
+
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //log out from parse if user sign through parse
-                if (ParseUser.getCurrentUser() != null) {
+                if (ParseUser.getCurrentUser() != null){
                     ParseUser.logOutInBackground(new LogOutCallback() {
+                        @Override
                         public void done(ParseException e) {
-                            if (e == null) {
+                            if (e == null){
                                 returnToAuthentication();
-                            } else {
+                            }
+                            else{
                                 Toast.makeText(getContext(), "Error signing out", Toast.LENGTH_SHORT).show();
                             }
-                        }
-                    });
-                } else {
-                    googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            returnToAuthentication();
                         }
                     });
                 }
             }
         });
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        String username = currentUser.getString("username");
+        //Integer integerPost = currentUser.getJSONArray("posts").length();
+        Integer integerClosetItems = currentUser.getJSONArray("closet").length();
+        userName.setText(username);
+        //numberOfPost.setText(integerPost.toString());
+        numberOfClosetItems.setText(integerClosetItems.toString());
         return view;
     }
 

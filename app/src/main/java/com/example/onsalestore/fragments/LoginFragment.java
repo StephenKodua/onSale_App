@@ -7,6 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,7 +100,7 @@ public class LoginFragment extends Fragment {
         }
     }
 
-    //GOOGLE SIGN IN FLOW
+//GOOGLE SIGN IN FLOW
 //fire sign in intent to start sign-in flow
     private void googleSignIn() {
         Intent googleSignInIntent = googleSignInClient.getSignInIntent();

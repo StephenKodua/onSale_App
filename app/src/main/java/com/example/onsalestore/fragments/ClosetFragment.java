@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toolbar;
 
 import com.example.onsale.R;
 import com.example.onsalestore.adapters.ClosetItemAdapter;
@@ -42,7 +45,6 @@ public class ClosetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_closet, container, false);
-
         rvClosetItems = view.findViewById(R.id.rvClosetItems);
         allClosetItems = new ArrayList<>();
         closetItemAdapter = new ClosetItemAdapter(getContext(), allClosetItems);
@@ -72,7 +74,7 @@ public class ClosetFragment extends Fragment {
 
     private void queryClosetItems(String itemId) {
         ParseQuery<ClosetItem> query = ParseQuery.getQuery(ClosetItem.class);
-        query.addDescendingOrder("createdAt");
+        query.addDescendingOrder(ClosetItem.KEY_CREATED_KEY);
         query.getInBackground(itemId, new GetCallback<ClosetItem>() {
             @Override
             public void done(ClosetItem object, ParseException e) {
