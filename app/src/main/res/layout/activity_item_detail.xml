@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,13 +9,17 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="428dp"
+        android:layout_width="402dp"
+        android:layout_height="406dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="3dp"
         android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2">
 
         <ImageView
+
             android:id="@+id/itemDetailImage"
             android:layout_width="match_parent"
             android:layout_height="273dp"
@@ -25,9 +30,10 @@
             android:src="@drawable/jordans" />
 
         <TextView
+
             android:id="@+id/itemDetailName"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:text="Nike Air Max"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -35,7 +41,7 @@
         <TextView
             android:id="@+id/itemDetailSource"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:text="Mens-Shoe"
             android:textColor="#403E3E"
             android:textSize="16sp"
@@ -44,11 +50,19 @@
         <TextView
             android:id="@+id/itemDetailPrice"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:text="$210"
             android:textColor="#595656"
             android:textSize="16sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/itemDetailUrl"
+            android:layout_width="403dp"
+            android:layout_height="53dp"
+            android:text="https://www.metacareers.com"
+            android:textColor="#1F3CDC"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -56,7 +70,9 @@
         android:id="@+id/btnAddToCloset"
         android:layout_width="190dp"
         android:layout_height="50dp"
-        android:text="Button"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:text="Add To Closet"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -64,7 +80,9 @@
         android:id="@+id/btnNotNow"
         android:layout_width="193dp"
         android:layout_height="50dp"
-        android:text="Button"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:text="Later"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 

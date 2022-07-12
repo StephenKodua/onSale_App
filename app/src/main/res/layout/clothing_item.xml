@@ -27,7 +27,7 @@
             android:layout_marginBottom="0dp">
 
             <ImageView
-                android:id="@+id/itemImage"
+                android:id="@+id/ivClothingImage"
                 android:layout_width="match_parent"
                 android:layout_height="105dp"
                 android:layout_alignParentEnd="true"
@@ -41,7 +41,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/itemName"
+                android:id="@+id/tvClothingName"
                 android:layout_width="match_parent"
                 android:layout_height="19dp"
                 android:text="Nike Airforce"
@@ -49,10 +49,10 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/itemImage" />
+                app:layout_constraintTop_toBottomOf="@+id/ivClothingImage" />
 
             <TextView
-                android:id="@+id/itemPrice"
+                android:id="@+id/tvClothingPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"

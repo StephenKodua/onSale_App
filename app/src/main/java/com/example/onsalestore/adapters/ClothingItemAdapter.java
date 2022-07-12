@@ -2,6 +2,7 @@ package com.example.onsalestore.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,17 +49,15 @@ public class ClothingItemAdapter extends RecyclerView.Adapter<ClothingItemAdapte
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView itemName;
-        private TextView itemPrice;
-        private ImageView itemImage;
-
+        private TextView tvClothingName;
+        private TextView tvClothingPrice;
+        private ImageView ivClothingImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemName = itemView.findViewById(R.id.itemName);
-            itemPrice = itemView.findViewById(R.id.itemPrice);
-            itemImage = itemView.findViewById(R.id.itemImage);
-
+            tvClothingName = itemView.findViewById(R.id.tvClothingName);
+            tvClothingPrice = itemView.findViewById(R.id.tvClothingPrice);
+            ivClothingImage = itemView.findViewById(R.id.ivClothingImage);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -73,12 +72,11 @@ public class ClothingItemAdapter extends RecyclerView.Adapter<ClothingItemAdapte
         }
 
         public void bind(ClothingItem item) {
-            itemName.setText(item.getItemName());
-            itemPrice.setText(item.getItemPrice());
-
+            tvClothingName.setText(item.getItemName());
+            tvClothingPrice.setText(item.getItemPrice());
             String image = item.getItemImageUrl();
             if (image != null) {
-                Glide.with(context).load(image).into(itemImage);
+                Glide.with(context).load(image).into(ivClothingImage);
             }
         }
     }

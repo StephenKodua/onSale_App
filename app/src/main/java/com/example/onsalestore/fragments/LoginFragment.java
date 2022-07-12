@@ -7,6 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +31,8 @@ import com.google.android.gms.tasks.Task;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+
+import org.json.JSONException;
 
 
 public class LoginFragment extends Fragment {
@@ -57,7 +62,9 @@ public class LoginFragment extends Fragment {
 
         //Google login contents
         ivGoogleLogin = view.findViewById(R.id.ivGoogleLogin);
-        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
         googleSignInClient = GoogleSignIn.getClient(getContext(), googleSignInOptions);
 
 
@@ -93,19 +100,19 @@ public class LoginFragment extends Fragment {
         }
     }
 
-    //GOOGLE SIGN IN FLOW
+//GOOGLE SIGN IN FLOW
 //fire sign in intent to start sign-in flow
     private void googleSignIn() {
         Intent googleSignInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(googleSignInIntent, REQUEST_CODE);
     }
 
-
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             //object contains information about the signed-in user, such as the user's name.
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             goToMainActivity();
+
         } catch (ApiException e) {
             Log.w("LoginFragment", "signInResult:failed code=" + e.getStatusCode());
         }
