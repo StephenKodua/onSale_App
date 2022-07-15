@@ -8,7 +8,7 @@
     android:layout_margin="1dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/homeItemCardView"
         android:layout_width="144dp"
         android:layout_height="148dp"
         android:layout_centerInParent="true"

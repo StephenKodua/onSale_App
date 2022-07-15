@@ -62,11 +62,9 @@ public class ShareFragment extends Fragment {
     }
 
     private void queryPosts() {
-
         ParseQuery<PostItem> query = ParseQuery.getQuery(PostItem.class);
         query.include(PostItem.KEY_USER);
-        query.setLimit(20);
-        query.addDescendingOrder("createdAt");
+        query.addAscendingOrder("createdAt");
         query.findInBackground(new FindCallback<PostItem>() {
             @Override
             public void done(List<PostItem> posts, ParseException e) {

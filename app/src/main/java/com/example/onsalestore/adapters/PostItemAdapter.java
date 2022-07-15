@@ -7,10 +7,12 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -20,6 +22,7 @@ import com.example.onsalestore.activities.PostDetailActivity;
 import com.example.onsalestore.objects.ClothingItem;
 import com.example.onsalestore.objects.PostItem;
 
+import org.json.JSONArray;
 import org.parceler.Parcels;
 
 import java.io.Serializable;
@@ -47,6 +50,8 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PostItem postItem = postItemList.get(position);
         holder.bind(postItem);
+        holder.postItemCardView.startAnimation(AnimationUtils.loadAnimation(holder.postItemCardView.getContext(),
+                R.anim.anim_sliding));
     }
 
     @Override
@@ -55,18 +60,23 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.ViewHo
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        //closet items
-        private TextView tvUserName, numberOfLikes;
-        private ImageView userProfileImage, ivUserPost, ivComment;
+
+        private TextView tvUserName, numberOfLikes, numberOfComments;
+        private ImageView userProfileImage, ivUserPost, ivComment,ivLike;
+        private CardView postItemCardView;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvUserName = itemView.findViewById(R.id.tvUserName);
-            numberOfLikes = itemView.findViewById(R.id.numberOfLikes);
             userProfileImage = itemView.findViewById(R.id.userProfileImage);
             ivUserPost = itemView.findViewById(R.id.ivUserPost);
+            numberOfLikes = itemView.findViewById(R.id.numberOfLikes);
+            numberOfComments = itemView.findViewById(R.id.numberOfComments);
+            ivLike = itemView.findViewById(R.id.ivLike);
             ivComment = itemView.findViewById(R.id.ivComment);
+
+            postItemCardView = itemView.findViewById(R.id.postItemCardView);
 
             ivUserPost.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -92,8 +102,16 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.ViewHo
         }
 
         public void bind(PostItem item) {
+            JSONArray jsonArray = item.getJSONArray("comments");
+            Integer likes = item.getNumberOfLikes();
+            numberOfLikes.setText(Integer.toString(likes));
+            if (jsonArray == null){
+                numberOfComments.setText("0");
+            }
+            else{
+                numberOfComments.setText(Integer.toString(jsonArray.length()));
+            }
             tvUserName.setText(item.getUser().getUsername());
-            numberOfLikes.setText(item.getNumberOfLikes().toString());
             String image = item.getItemImageUrl();
             if (image != null) {
                 Glide.with(context).load(image).into(ivUserPost);

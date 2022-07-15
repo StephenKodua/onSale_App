@@ -6,11 +6,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -35,6 +39,7 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
     private ClosetItemMultiSelectListener clickListener;
 
 
+
     public ClosetItemAdapter(Context context, List<ClosetItem> closetItemList) {
         this.context = context;
         this.closetItemList = closetItemList;
@@ -51,6 +56,8 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ClosetItem closetItem = closetItemList.get(position);
         holder.bind(closetItem);
+        holder.closetItemCardView.startAnimation(AnimationUtils.loadAnimation(holder.closetItemCardView.getContext(),
+                R.anim.anim_sliding));
     }
 
     @Override
@@ -65,6 +72,7 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvClosetItemName;
         private ImageView ivClosetItemImage, ivPostImage, checkBox;
+        private CardView closetItemCardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,6 +80,8 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
             ivClosetItemImage = itemView.findViewById(R.id.ivClosetItemImage);
             ivPostImage = itemView.findViewById(R.id.ivPostImage);
             checkBox = itemView.findViewById(R.id.checkBox);
+            closetItemCardView = itemView.findViewById(R.id.closetItemCardView);
+
 
             ivPostImage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -123,6 +133,8 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
                     }
                 }
             });
+
+
         }
 
         private void clickItem(ClosetItem item) {
