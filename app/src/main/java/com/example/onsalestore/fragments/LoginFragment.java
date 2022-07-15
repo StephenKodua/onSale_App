@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.onsale.R;
 import com.example.onsalestore.activities.MainActivity;
@@ -31,8 +32,11 @@ import com.google.android.gms.tasks.Task;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 import org.json.JSONException;
+
+import java.util.Objects;
 
 
 public class LoginFragment extends Fragment {
@@ -64,6 +68,7 @@ public class LoginFragment extends Fragment {
         ivGoogleLogin = view.findViewById(R.id.ivGoogleLogin);
         googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
+                .requestId()
                 .build();
         googleSignInClient = GoogleSignIn.getClient(getContext(), googleSignInOptions);
 
@@ -111,7 +116,21 @@ public class LoginFragment extends Fragment {
         try {
             //object contains information about the signed-in user, such as the user's name.
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            goToMainActivity();
+            Log.i("LoginFragment", "Login Success!");
+            Toast.makeText(getContext(), "Success", Toast.LENGTH_LONG).show();
+            ParseUser newUser = new ParseUser();
+            newUser.signUpInBackground(new SignUpCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e != null) {
+                        goToMainActivity();
+                    } else {
+                        newUser.setUsername(account.getDisplayName());
+                        newUser.setPassword(account.getFamilyName());
+                        goToMainActivity();
+                    }
+                }
+            });
 
         } catch (ApiException e) {
             Log.w("LoginFragment", "signInResult:failed code=" + e.getStatusCode());

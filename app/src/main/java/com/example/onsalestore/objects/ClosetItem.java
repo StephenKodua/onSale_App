@@ -4,8 +4,10 @@ import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import java.io.Serializable;
+
 @ParseClassName("ClosetItem")
-public class ClosetItem extends ParseObject {
+public class ClosetItem extends ParseObject implements Serializable {
     public static final String KEY_ITEM_NAME = "itemName";
     public static final String KEY_ITEM_IMAGE_URL = "itemImageUrl";
     public static final String KEY_USER = "user";
@@ -31,8 +33,15 @@ public class ClosetItem extends ParseObject {
 
     public ParseUser getUser(){return getParseUser(KEY_USER);}
 
-    public void setUser(){
-        ParseUser currentUser = ParseUser.getCurrentUser();
-        put (KEY_USER, currentUser);}
+    public void setUser(){ParseUser currentUser = ParseUser.getCurrentUser();put (KEY_USER, currentUser);}
+
+    //Model Class
+    private boolean isChecked = true;
+
+    private String name;
+
+    public String getName(){return name;}
+
+    public void setName(String name){this.name = name;}
 
 }

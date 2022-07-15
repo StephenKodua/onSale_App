@@ -1,6 +1,7 @@
 package com.example.onsalestore.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,19 +15,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.onsale.R;
+import com.example.onsalestore.fragments.ClosetItemMultiSelectListener;
 import com.example.onsalestore.objects.ClosetItem;
-import com.example.onsalestore.objects.ClothingItem;
 import com.example.onsalestore.objects.PostItem;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import java.io.File;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.ViewHolder> {
     private Context context;
     private List<ClosetItem> closetItemList;
+    private ArrayList<ClosetItem> selectList = new ArrayList<>();
+    private Set<String> selectedItems = new HashSet<>();
+    private ClosetItemMultiSelectListener clickListener;
+
 
     public ClosetItemAdapter(Context context, List<ClosetItem> closetItemList) {
         this.context = context;
@@ -51,15 +58,20 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
         return closetItemList.size();
     }
 
+    public void setItemClickListener(ClosetItemMultiSelectListener clickListener) {
+        this.clickListener = clickListener;
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvClosetItemName;
-        private ImageView ivClosetItemImage, ivPostImage;
+        private ImageView ivClosetItemImage, ivPostImage, checkBox;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvClosetItemName = itemView.findViewById(R.id.tvClosetItemName);
             ivClosetItemImage = itemView.findViewById(R.id.ivClosetItemImage);
             ivPostImage = itemView.findViewById(R.id.ivPostImage);
+            checkBox = itemView.findViewById(R.id.checkBox);
 
             ivPostImage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -76,27 +88,56 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
                 @Override
                 public void done(ParseException e) {
                     if (e != null) {
-                        Log.e("ClosetItemAdapter", "Error while saving", e);
                         Toast.makeText(context.getApplicationContext(), "Error while saving!", Toast.LENGTH_LONG).show();
                         return;
                     }
-                    Log.i("ClosetItemAdapter", "Post save was successful!");
                     Toast.makeText(context.getApplicationContext(), "Item posted successfully!", Toast.LENGTH_LONG).show();
                     postItem.setUser();
                     postItem.setItemImageUrl(postItem.getItemImageUrl());
                     currentUser.add("posts", postItem);
                     currentUser.saveInBackground();
-
+                    ivPostImage.setVisibility(View.GONE); //User cannot post same image twice
                 }
             });
         }
 
         public void bind(ClosetItem item) {
-            Log.d("ClosetItemAdapter", item.getItemName());
+            checkBox.setVisibility(selectedItems.contains(item.getObjectId()) ? View.VISIBLE : View.GONE);
             tvClosetItemName.setText(item.getItemName());
             String image = item.getItemImageUrl();
             if (image != null) {
                 Glide.with(context).load(image).into(ivClosetItemImage);
+            }
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                public boolean onLongClick(View view) {
+                    clickItem(item);
+                    return true;
+                }
+            });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!selectedItems.isEmpty()) {
+                        clickItem(item);
+                    }
+                }
+            });
+        }
+
+        private void clickItem(ClosetItem item) {
+            if (!selectedItems.contains(item.getObjectId())) {
+                checkBox.setVisibility(View.VISIBLE);
+                ivClosetItemImage.setBackgroundColor(Color.LTGRAY);
+                selectedItems.add(item.getObjectId());
+
+            } else {
+                checkBox.setVisibility(View.GONE);
+                selectedItems.remove(item.getObjectId());
+            }
+
+            if (clickListener != null) {
+                clickListener.onMultiSelectUpdated(selectedItems.size());
             }
         }
     }

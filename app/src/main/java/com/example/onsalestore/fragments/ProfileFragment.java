@@ -66,10 +66,10 @@ public class ProfileFragment extends Fragment {
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         String username = currentUser.getString("username");
-        //Integer integerPost = currentUser.getJSONArray("posts").length();
+        Integer integerPost = currentUser.getJSONArray("posts").length();
         Integer integerClosetItems = currentUser.getJSONArray("closet").length();
         userName.setText(username);
-        //numberOfPost.setText(integerPost.toString());
+        numberOfPost.setText(integerPost.toString());
         numberOfClosetItems.setText(integerClosetItems.toString());
         return view;
     }
