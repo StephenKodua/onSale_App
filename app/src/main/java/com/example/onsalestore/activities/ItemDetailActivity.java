@@ -19,7 +19,9 @@ import com.example.onsale.R;
 import com.example.onsalestore.objects.ClosetItem;
 import com.example.onsalestore.objects.ClothingItem;
 import com.google.android.material.snackbar.Snackbar;
+import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -71,6 +73,8 @@ public class ItemDetailActivity extends AppCompatActivity {
                         if (e != null) {
                             Toast.makeText(ItemDetailActivity.this, "Error Adding To Closet", Toast.LENGTH_SHORT).show();
                         }
+//                        ParseObject closetItem = new ParseObject("ClosetItem");
+//                        closetItem.put("ite,");
                         currentUser.add("closet", closetItem);
                         currentUser.saveInBackground();
                         Toast.makeText(ItemDetailActivity.this, "Successfully Added To Closet", Toast.LENGTH_SHORT).show();

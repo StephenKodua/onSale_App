@@ -34,11 +34,8 @@ import java.util.Set;
 public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.ViewHolder> {
     private Context context;
     private List<ClosetItem> closetItemList;
-    private ArrayList<ClosetItem> selectList = new ArrayList<>();
     private Set<String> selectedItems = new HashSet<>();
     private ClosetItemMultiSelectListener clickListener;
-
-
 
     public ClosetItemAdapter(Context context, List<ClosetItem> closetItemList) {
         this.context = context;
@@ -133,8 +130,6 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
                     }
                 }
             });
-
-
         }
 
         private void clickItem(ClosetItem item) {
@@ -147,7 +142,6 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
                 checkBox.setVisibility(View.GONE);
                 selectedItems.remove(item.getObjectId());
             }
-
             if (clickListener != null) {
                 clickListener.onMultiSelectUpdated(selectedItems.size());
             }
