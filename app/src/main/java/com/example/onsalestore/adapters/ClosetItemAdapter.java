@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -23,6 +21,8 @@ import com.example.onsalestore.fragments.ClosetItemMultiSelectListener;
 import com.example.onsalestore.objects.ClosetItem;
 import com.example.onsalestore.objects.PostItem;
 import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -99,11 +99,13 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
                         return;
                     }
                     Toast.makeText(context.getApplicationContext(), "Item posted successfully!", Toast.LENGTH_LONG).show();
+                    List<String> list = new ArrayList<String>(selectedItems);
+                    Log.e("ClosetItemAdapter", "SelectedItems: " + list.get(0));
                     postItem.setUser();
                     postItem.setItemImageUrl(postItem.getItemImageUrl());
                     currentUser.add("posts", postItem);
                     currentUser.saveInBackground();
-                    ivPostImage.setVisibility(View.GONE); //User cannot post same image twice
+
                 }
             });
         }
@@ -137,10 +139,12 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
                 checkBox.setVisibility(View.VISIBLE);
                 ivClosetItemImage.setBackgroundColor(Color.LTGRAY);
                 selectedItems.add(item.getObjectId());
+                Log.e("ClosetA", "SelectedItems: " + selectedItems.size());
 
             } else {
                 checkBox.setVisibility(View.GONE);
                 selectedItems.remove(item.getObjectId());
+                Log.e("ClosetA", "SelectedItems: " + selectedItems.size());
             }
             if (clickListener != null) {
                 clickListener.onMultiSelectUpdated(selectedItems.size());

@@ -2,8 +2,7 @@ package com.example.onsalestore.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Parcelable;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,14 +18,11 @@ import com.bumptech.glide.Glide;
 import com.example.onsale.R;
 import com.example.onsalestore.activities.WriteCommentActivity;
 import com.example.onsalestore.activities.PostDetailActivity;
-import com.example.onsalestore.objects.ClothingItem;
 import com.example.onsalestore.objects.PostItem;
 
 import org.json.JSONArray;
 import org.parceler.Parcels;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.ViewHolder> {
@@ -62,20 +58,20 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.ViewHo
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvUserName, numberOfLikes, numberOfComments;
-        private ImageView userProfileImage, ivUserPost, ivComment,ivLike;
+        private ImageView postItemProfileImage, ivUserPost, postItemComment,postItemLike, postItemShare;
         private CardView postItemCardView;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvUserName = itemView.findViewById(R.id.tvUserName);
-            userProfileImage = itemView.findViewById(R.id.userProfileImage);
-            ivUserPost = itemView.findViewById(R.id.ivUserPost);
-            numberOfLikes = itemView.findViewById(R.id.numberOfLikes);
-            numberOfComments = itemView.findViewById(R.id.numberOfComments);
-            ivLike = itemView.findViewById(R.id.ivLike);
-            ivComment = itemView.findViewById(R.id.ivComment);
-
+            tvUserName = itemView.findViewById(R.id.postItemUserName);
+            postItemProfileImage = itemView.findViewById(R.id.postItemProfileImage);
+            ivUserPost = itemView.findViewById(R.id.postItemImage);
+            numberOfLikes = itemView.findViewById(R.id.postItemNumberOfLikes);
+            numberOfComments = itemView.findViewById(R.id.postItemNumberOfComments);
+            postItemLike = itemView.findViewById(R.id.postItemLike);
+            postItemComment = itemView.findViewById(R.id.postItemComment);
+            postItemShare = itemView.findViewById(R.id.postItemShare);
             postItemCardView = itemView.findViewById(R.id.postItemCardView);
 
             ivUserPost.setOnClickListener(new View.OnClickListener() {
@@ -85,18 +81,31 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.ViewHo
                     PostItem postItem = postItemList.get(position);
                     Intent intent = new Intent(itemView.getContext(), PostDetailActivity.class);
                     intent.putExtra("EXTRA_ITEM", Parcels.wrap(postItem));
-                    itemView.getContext().startActivity(intent);
+                    context.startActivity(intent);
                 }
             });
 
-            ivComment.setOnClickListener(new View.OnClickListener() {
+            postItemComment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     PostItem postItem = postItemList.get(position);
                     Intent intent = new Intent(itemView.getContext(), WriteCommentActivity.class);
                     intent.putExtra("EXTRA_ITEM", Parcels.wrap(postItem));
-                    itemView.getContext().startActivity(intent);
+                    context.startActivity(intent);
+                }
+            });
+
+            postItemShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                    sendIntent.setType("text/plain");
+                    Intent shareIntent = Intent.createChooser(sendIntent, null);
+                    context.startActivity(shareIntent);
+
                 }
             });
         }
@@ -118,4 +127,6 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.ViewHo
             }
         }
     }
+
+
 }

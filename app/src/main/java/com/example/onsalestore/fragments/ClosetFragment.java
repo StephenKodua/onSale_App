@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,6 +23,7 @@ import com.example.onsalestore.adapters.ClosetItemAdapter;
 import com.example.onsalestore.objects.ClosetItem;
 import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -35,7 +37,7 @@ public class ClosetFragment extends Fragment implements ClosetItemMultiSelectLis
 
     private RecyclerView rvClosetItems;
     protected ClosetItemAdapter closetItemAdapter;
-    private ArrayList<ClosetItem> items = new ArrayList();
+    //private ArrayList<ClosetItem> items = new ArrayList();
     protected List<ClosetItem> allClosetItems, selectedList;
     private ActionMode actionMode;
 
@@ -128,6 +130,7 @@ public class ClosetFragment extends Fragment implements ClosetItemMultiSelectLis
         @Override
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
             //check for post
+
             return false;
         }
 

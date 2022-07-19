@@ -1,8 +1,6 @@
 package com.example.onsalestore.fragments;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,16 +15,9 @@ import android.widget.Toast;
 
 import com.example.onsale.R;
 import com.example.onsalestore.activities.AuthenticationActivity;
-import com.parse.FindCallback;
 import com.parse.LogOutCallback;
 import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
-import java.io.File;
-import java.util.List;
 
 public class ProfileFragment extends Fragment {
 
@@ -42,7 +33,7 @@ public class ProfileFragment extends Fragment {
         userName = view.findViewById(R.id.profileUserName);
         numberOfPost = view.findViewById(R.id.numberOfPost);
         numberOfClosetItems = view.findViewById(R.id.numberOfClosetItem);
-        userProfileImage = view.findViewById(R.id.userProfileImage);
+        userProfileImage = view.findViewById(R.id.postItemProfileImage);
         btnSignOut = view.findViewById(R.id.btnSignOut);
 
         btnSignOut.setOnClickListener(new View.OnClickListener() {

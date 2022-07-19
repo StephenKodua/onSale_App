@@ -31,10 +31,11 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2533073591731808" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_main_fragment.xml" value="0.33125" />
-        <entry key="app/src/main/res/layout/activity_post_detail.xml" value="0.34427083333333336" />
+        <entry key="app/src/main/res/layout/activity_post_detail.xml" value="0.2695417789757412" />
         <entry key="app/src/main/res/layout/activity_post_item.xml" value="0.40260416666666665" />
         <entry key="app/src/main/res/layout/activity_profile_item.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_write_comment.xml" value="0.6157407407407407" />
         <entry key="app/src/main/res/layout/category_item.xml" value="0.45" />
         <entry key="app/src/main/res/layout/clothing_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_closet.xml" value="0.38144073486328123" />
@@ -47,6 +48,7 @@
         <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.33125" />
         <entry key="app/src/main/res/layout/list_item_main.xml" value="0.20208333333333334" />
         <entry key="app/src/main/res/layout/sales_item_layout.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/selector.xml" value="0.1" />
         <entry key="app/src/main/res/layout/store_item.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/test.xml" value="0.335" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.9661458333333334" />

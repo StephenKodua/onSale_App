@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         RequestHeaders headers = new RequestHeaders();
-        headers.put("X-RapidAPI-Key", "aa616bd4fdmshf4e3b2558774cdcp18d333jsnab818655e853");
+        headers.put("X-RapidAPI-Key", "2466bdbd3emsh59aaea237b7c6d5p13be08jsne6c71d3803ce");
         headers.put("X-RapidAPI-Host", "nike-products.p.rapidapi.com");
 
         allItems.clear(); //clear previous items before requesting new

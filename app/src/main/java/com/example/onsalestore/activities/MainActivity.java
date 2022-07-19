@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Notification;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setTitle("My Closet");
         setContentView(R.layout.activity_main);
         addFragment();
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     public void addFragment() {
         HomeFragment fragment = new HomeFragment();
         fragmentManager = getSupportFragmentManager();
@@ -69,4 +72,5 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.homeFragmentContainer, fragment);
         fragmentTransaction.commit();
     }
+
 }

@@ -2,6 +2,7 @@ package com.example.onsalestore.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ public class WriteCommentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("");
         setContentView(R.layout.activity_write_comment);
         etComment = findViewById(R.id.etComment);
         postComment = findViewById(R.id.postComment);
@@ -37,6 +39,7 @@ public class WriteCommentActivity extends AppCompatActivity {
                 postItem.add("comments", commentItem);
                 postItem.saveInBackground();
                 etComment.getText().clear();
+                finish();
             }
         });
     }

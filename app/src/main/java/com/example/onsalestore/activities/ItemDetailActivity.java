@@ -37,7 +37,7 @@ public class ItemDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
-
+        setTitle("");
         itemDetailImage = findViewById(R.id.itemDetailImage);
         itemDetailName = findViewById(R.id.itemDetailName);
         itemDetailSource = findViewById(R.id.itemDetailSource);
