@@ -27,9 +27,9 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data
-                    android:scheme="http"
-                    android:host="www.test.com"
-                    android:pathPrefix="/detail"/>
+                    android:scheme="mycloset"
+                    android:host="post">
+                </data>
             </intent-filter>
 
         </activity>

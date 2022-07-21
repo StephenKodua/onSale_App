@@ -45,6 +45,7 @@ public class PostDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle("");
         setContentView(R.layout.activity_post_detail);
+
         Intent intent = getIntent();
         String action = intent.getAction();
         Uri data = intent.getData();
@@ -62,14 +63,12 @@ public class PostDetailActivity extends AppCompatActivity {
         rvPostComments.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         PostItem postItem = Parcels.unwrap(getIntent().getParcelableExtra("EXTRA_ITEM"));
-        Log.d("PostDetailActivity","This is the post item : " + postItem);
         String postImage = postItem.getItemImageUrl();
-        Log.d("PostDetailActivity", "Inside the try block " + postImage);
 
         if (postImage != null) {
             Glide.with(this).load(postImage).into(postDetailImage);
         }
-        Log.e("PostDetailActivity", "This is the post image url" + postImage);
+
         postDetailUserName.setText(postItem.getUser().getUsername());
         JSONArray jsonArray = postItem.getJSONArray("comments");
         Integer likes = postItem.getNumberOfLikes();

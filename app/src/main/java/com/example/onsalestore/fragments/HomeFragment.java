@@ -46,7 +46,7 @@ public class HomeFragment extends Fragment {
         itemAdapter = new ClothingItemAdapter(getContext(), allItems);
         rvClothingFeed.setAdapter(itemAdapter);
         rvClothingFeed.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        requestNikeItems();
+        //requestNikeItems();
 
         return view;
     }
