@@ -40,7 +40,6 @@ public class WriteCommentActivity extends AppCompatActivity {
                 postItem.saveInBackground();
                 etComment.getText().clear();
                 finish();
-
             }
         });
     }

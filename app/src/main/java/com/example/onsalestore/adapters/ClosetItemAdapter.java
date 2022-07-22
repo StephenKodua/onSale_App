@@ -68,7 +68,9 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvClosetItemName;
-        private ImageView ivClosetItemImage, ivPostImage, checkBox;
+        private ImageView ivClosetItemImage;
+        private ImageView ivPostImage;
+        private ImageView checkBox;
         private CardView closetItemCardView;
 
         public ViewHolder(@NonNull View itemView) {
@@ -78,7 +80,6 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
             ivPostImage = itemView.findViewById(R.id.ivPostImage);
             checkBox = itemView.findViewById(R.id.checkBox);
             closetItemCardView = itemView.findViewById(R.id.closetItemCardView);
-
 
             ivPostImage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -100,7 +101,6 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
                     }
                     Toast.makeText(context.getApplicationContext(), "Item posted successfully!", Toast.LENGTH_LONG).show();
                     List<String> list = new ArrayList<String>(selectedItems);
-                    Log.e("ClosetItemAdapter", "SelectedItems: " + list.get(0));
                     postItem.setUser();
                     postItem.setItemImageUrl(postItem.getItemImageUrl());
                     currentUser.add("posts", postItem);
@@ -139,12 +139,10 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
                 checkBox.setVisibility(View.VISIBLE);
                 ivClosetItemImage.setBackgroundColor(Color.LTGRAY);
                 selectedItems.add(item.getObjectId());
-                Log.e("ClosetA", "SelectedItems: " + selectedItems.size());
 
             } else {
                 checkBox.setVisibility(View.GONE);
                 selectedItems.remove(item.getObjectId());
-                Log.e("ClosetA", "SelectedItems: " + selectedItems.size());
             }
             if (clickListener != null) {
                 clickListener.onMultiSelectUpdated(selectedItems.size());

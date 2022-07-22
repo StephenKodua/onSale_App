@@ -35,7 +35,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShareFragment extends Fragment {
+public class PostFragment extends Fragment {
 
     private RecyclerView rvClothingPost;
     protected PostItemAdapter postItemAdapter;
@@ -44,7 +44,6 @@ public class ShareFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -69,7 +68,6 @@ public class ShareFragment extends Fragment {
         query.findInBackground(new FindCallback<PostItem>() {
             @Override
             public void done(List<PostItem> posts, ParseException e) {
-                // check for errors
                 if (e != null) {
                     Log.e("ShareFragment", "Issue with getting posts", e);
                     return;
@@ -79,7 +77,4 @@ public class ShareFragment extends Fragment {
             }
         });
     }
-
-
-
 }

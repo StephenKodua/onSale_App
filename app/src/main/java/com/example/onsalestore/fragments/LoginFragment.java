@@ -43,7 +43,8 @@ public class LoginFragment extends Fragment {
 
     //Main login contents
     private Button btnLaunchLogin;
-    private EditText etLoginUsername, etLoginPassword;
+    private EditText etLoginUsername;
+    private EditText etLoginPassword;
 
     //Google login contents
     private GoogleSignInOptions googleSignInOptions;
@@ -96,17 +97,12 @@ public class LoginFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == REQUEST_CODE) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
         }
     }
 
-//GOOGLE SIGN IN FLOW
-//fire sign in intent to start sign-in flow
     private void googleSignIn() {
         Intent googleSignInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(googleSignInIntent, REQUEST_CODE);
@@ -114,7 +110,6 @@ public class LoginFragment extends Fragment {
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
-            //object contains information about the signed-in user, such as the user's name.
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Log.i("LoginFragment", "Login Success!");
             Toast.makeText(getContext(), "Success", Toast.LENGTH_LONG).show();
@@ -137,7 +132,6 @@ public class LoginFragment extends Fragment {
         }
     }
 
-    //parse
     private void loginUser(String username, String password) {
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
@@ -153,7 +147,6 @@ public class LoginFragment extends Fragment {
         });
     }
 
-    //Launch MainActivity
     private void goToMainActivity() {
         Intent i = new Intent(getContext(), MainActivity.class);
         startActivity(i);

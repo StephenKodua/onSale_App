@@ -37,7 +37,6 @@ public class ClosetFragment extends Fragment implements ClosetItemMultiSelectLis
 
     private RecyclerView rvClosetItems;
     protected ClosetItemAdapter closetItemAdapter;
-    //private ArrayList<ClosetItem> items = new ArrayList();
     protected List<ClosetItem> allClosetItems, selectedList;
     private ActionMode actionMode;
 
@@ -129,8 +128,7 @@ public class ClosetFragment extends Fragment implements ClosetItemMultiSelectLis
         // Called when the user selects a contextual menu item
         @Override
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            //check for post
-
+            //TODO: check for post
             return false;
         }
 

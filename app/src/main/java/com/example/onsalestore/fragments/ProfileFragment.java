@@ -22,7 +22,9 @@ import com.parse.ParseUser;
 public class ProfileFragment extends Fragment {
 
     Button btnSignOut;
-    TextView userName, numberOfPost, numberOfClosetItems;
+    TextView userName;
+    TextView numberOfPost;
+    TextView numberOfClosetItems;
     ImageView userProfileImage;
 
     @Override
@@ -39,14 +41,13 @@ public class ProfileFragment extends Fragment {
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ParseUser.getCurrentUser() != null){
+                if (ParseUser.getCurrentUser() != null) {
                     ParseUser.logOutInBackground(new LogOutCallback() {
                         @Override
                         public void done(ParseException e) {
-                            if (e == null){
+                            if (e == null) {
                                 returnToAuthentication();
-                            }
-                            else{
+                            } else {
                                 Toast.makeText(getContext(), "Error signing out", Toast.LENGTH_SHORT).show();
                             }
                         }

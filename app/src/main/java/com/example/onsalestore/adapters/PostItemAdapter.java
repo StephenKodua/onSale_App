@@ -29,7 +29,6 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.ViewHo
     private Context context;
     private List<PostItem> postItemList;
 
-
     public PostItemAdapter(Context context, List<PostItem> postItemList) {
         this.context = context;
         this.postItemList = postItemList;
@@ -57,10 +56,15 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.ViewHo
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tvUserName, numberOfLikes, numberOfComments;
-        private ImageView postItemProfileImage, ivUserPost, postItemComment,postItemLike, postItemShare;
+        private TextView tvUserName;
+        private TextView numberOfLikes;
+        private TextView numberOfComments;
+        private ImageView postItemProfileImage;
+        private ImageView ivUserPost;
+        private ImageView postItemComment;
+        private ImageView postItemLike;
+        private ImageView postItemShare;
         private CardView postItemCardView;
-
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -95,29 +99,15 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.ViewHo
                     context.startActivity(intent);
                 }
             });
-
-            postItemShare.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent sendIntent = new Intent();
-                    sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-                    sendIntent.setType("text/plain");
-                    Intent shareIntent = Intent.createChooser(sendIntent, null);
-                    context.startActivity(shareIntent);
-
-                }
-            });
         }
 
         public void bind(PostItem item) {
             JSONArray jsonArray = item.getJSONArray("comments");
             Integer likes = item.getNumberOfLikes();
             numberOfLikes.setText(Integer.toString(likes));
-            if (jsonArray == null){
+            if (jsonArray == null) {
                 numberOfComments.setText("0");
-            }
-            else{
+            } else {
                 numberOfComments.setText(Integer.toString(jsonArray.length()));
             }
             tvUserName.setText(item.getUser().getUsername());
@@ -127,6 +117,4 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.ViewHo
             }
         }
     }
-
-
 }

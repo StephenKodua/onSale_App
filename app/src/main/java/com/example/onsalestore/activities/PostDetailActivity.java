@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,26 +37,39 @@ public class PostDetailActivity extends AppCompatActivity {
     protected CommentAdapter commentAdapter;
     protected List<CommentItem> allComments;
     private ImageView postDetailImage;
-    private TextView postDetailUserName, postDetailNumberOfLikes;
+    private ImageView postDetailShare;
+    private TextView postDetailUserName;
+    private TextView postDetailNumberOfLikes;
     private TextView postDetailNumberOfComments;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("");
+        setTitle("") ;
+        //TODO: set Post name,update class attribute abd parse
         setContentView(R.layout.activity_post_detail);
 
+        // Get intent, action and MIME type
         Intent intent = getIntent();
         String action = intent.getAction();
+        String type = intent.getType();
         Uri data = intent.getData();
+
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if ("text/plain".equals(type)) {
+                handleSendText(intent); // Handle text being sent
+            } else {
+                // Handle other intents, such as being started from the home screen
+            }
+        }
 
         postDetailImage = findViewById(R.id.postDetailImage);
         postDetailUserName = findViewById(R.id.postDetailUserName);
         postDetailNumberOfLikes = findViewById(R.id.postDetailNumberOfLikes);
         postDetailNumberOfComments = findViewById(R.id.postDetailNumberOfComments);
+        postDetailShare = findViewById(R.id.postDetailShare);
         rvPostComments = findViewById(R.id.rvPostComments);
-
         allComments = new ArrayList<>();
         commentAdapter = new CommentAdapter(this, allComments);
         rvPostComments.setAdapter(commentAdapter);
@@ -69,6 +83,18 @@ public class PostDetailActivity extends AppCompatActivity {
             Glide.with(this).load(postImage).into(postDetailImage);
         }
 
+        postDetailShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "mycloset://post" + "/" + postItem.getObjectId());
+                sendIntent.setType("text/plain");
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                startActivity(shareIntent);
+            }
+        });
+
         postDetailUserName.setText(postItem.getUser().getUsername());
         JSONArray jsonArray = postItem.getJSONArray("comments");
         Integer likes = postItem.getNumberOfLikes();
@@ -78,8 +104,14 @@ public class PostDetailActivity extends AppCompatActivity {
         } else {
             postDetailNumberOfComments.setText(Integer.toString(jsonArray.length()));
         }
-
         queryComments();
+    }
+
+    void handleSendText(Intent intent) {
+        String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+        if (sharedText != null) {
+            // Update UI to reflect text being shared
+        }
     }
 
     private void queryComments() {
@@ -107,9 +139,7 @@ public class PostDetailActivity extends AppCompatActivity {
             public void done(CommentItem object, ParseException e) {
                 if (e == null) {
                     allComments.add(object);
-                    String comment = (String) object.getString("comment");
-                    Log.d("PostDetailActivity", "Comment : " + comment);
-                    commentAdapter.notifyItemInserted(allComments.size());
+                    commentAdapter.notifyItemInserted(allComments.size()-1);
                 } else {
                     e.printStackTrace();
                 }

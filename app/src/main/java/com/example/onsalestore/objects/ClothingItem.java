@@ -33,8 +33,6 @@ public class ClothingItem {
 
     public ParseUser getUser(){return user;}
 
-    //public void setUser(ParseUser user){put (KEY_USER, user);}
-
     public String getItemImageUrl(){return itemImageUrl;}
 
     public String getItemPrice(){return itemPrice;}

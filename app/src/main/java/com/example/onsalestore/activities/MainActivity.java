@@ -5,25 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Notification;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.example.onsale.R;
-import com.example.onsalestore.adapters.ClothingItemAdapter;
 import com.example.onsalestore.fragments.ClosetFragment;
 import com.example.onsalestore.fragments.HomeFragment;
 import com.example.onsalestore.fragments.ProfileFragment;
-import com.example.onsalestore.fragments.ShareFragment;
-import com.example.onsalestore.objects.ClothingItem;
+import com.example.onsalestore.fragments.PostFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new HomeFragment();
                         break;
                     case R.id.shareItem:
-                        fragment = new ShareFragment();
+                        fragment = new PostFragment();
                         break;
                     case R.id.closetItem:
                         fragment = new ClosetFragment();
