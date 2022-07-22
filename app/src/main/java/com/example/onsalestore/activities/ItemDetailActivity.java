@@ -41,7 +41,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
         ClothingItem itemDetail = Parcels.unwrap(getIntent().getParcelableExtra("EXTRA_ITEM"));
-        setTitle("" + itemDetail.getItemName());
+        setTitle(itemDetail.getItemName());
         itemDetailImage = findViewById(R.id.itemDetailImage);
         itemDetailName = findViewById(R.id.itemDetailName);
         itemDetailSource = findViewById(R.id.itemDetailSource);
