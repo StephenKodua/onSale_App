@@ -19,10 +19,17 @@ public class CommentItem extends ParseObject {
         setUser();
     }
 
-    public ParseUser getUser() {return getParseUser(KEY_USER);}
+    public ParseUser getUser() {
+        return getParseUser(KEY_USER);
+    }
 
-    public void setUser() {ParseUser currentUser = ParseUser.getCurrentUser();put(KEY_USER, currentUser);}
+    public void setUser() {
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        put(KEY_USER, currentUser);
+    }
 
-    public void setComment(String comment){put(KEY_COMMENT,comment);}
+    public void setComment(String comment) {
+        put(KEY_COMMENT, comment);
+    }
 
 }

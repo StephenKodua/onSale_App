@@ -1,5 +1,6 @@
 package com.example.onsalestore.activities;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -7,7 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +33,8 @@ import org.json.JSONObject;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+
+import java.util.Date;
 import java.util.List;
 
 public class PostDetailActivity extends AppCompatActivity {
@@ -41,28 +46,15 @@ public class PostDetailActivity extends AppCompatActivity {
     private TextView postDetailUserName;
     private TextView postDetailNumberOfLikes;
     private TextView postDetailNumberOfComments;
-
+    private String objectId;
+    private PostItem postItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("") ;
+        setTitle("");
         //TODO: set Post name,update class attribute abd parse
         setContentView(R.layout.activity_post_detail);
-
-        // Get intent, action and MIME type
-        Intent intent = getIntent();
-        String action = intent.getAction();
-        String type = intent.getType();
-        Uri data = intent.getData();
-
-        if (Intent.ACTION_SEND.equals(action) && type != null) {
-            if ("text/plain".equals(type)) {
-                handleSendText(intent); // Handle text being sent
-            } else {
-                // Handle other intents, such as being started from the home screen
-            }
-        }
 
         postDetailImage = findViewById(R.id.postDetailImage);
         postDetailUserName = findViewById(R.id.postDetailUserName);
@@ -76,13 +68,6 @@ public class PostDetailActivity extends AppCompatActivity {
         rvPostComments.setLayoutManager(new LinearLayoutManager(this));
         rvPostComments.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        PostItem postItem = Parcels.unwrap(getIntent().getParcelableExtra("EXTRA_ITEM"));
-        String postImage = postItem.getItemImageUrl();
-
-        if (postImage != null) {
-            Glide.with(this).load(postImage).into(postDetailImage);
-        }
-
         postDetailShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,28 +80,60 @@ public class PostDetailActivity extends AppCompatActivity {
             }
         });
 
-        postDetailUserName.setText(postItem.getUser().getUsername());
-        JSONArray jsonArray = postItem.getJSONArray("comments");
-        Integer likes = postItem.getNumberOfLikes();
-        postDetailNumberOfLikes.setText(Integer.toString(likes));
-        if (jsonArray == null) {
-            postDetailNumberOfComments.setText("0");
+        PostItem extra_item = Parcels.unwrap(getIntent().getParcelableExtra("EXTRA_ITEM"));
+
+        if (extra_item != null) {
+            postItem = extra_item;
+            String postImage = postItem.getItemImageUrl();
+
+            if (postImage != null) {
+                Glide.with(this).load(postImage).into(postDetailImage);
+            }
+            postDetailUserName.setText(postItem.getUser().getUsername());
+            Integer likes = postItem.getNumberOfLikes();
+            postDetailNumberOfLikes.setText(Integer.toString(likes));
+            JSONArray jsonArray = postItem.getJSONArray("comments");
+            if (jsonArray == null) {
+                postDetailNumberOfComments.setText("0");
+            } else {
+                postDetailNumberOfComments.setText(Integer.toString(jsonArray.length()));
+            }
         } else {
-            postDetailNumberOfComments.setText(Integer.toString(jsonArray.length()));
+            Intent intent = getIntent();
+            Uri data = intent.getData();
+            String stringUri;
+            stringUri = data.toString();
+            objectId = stringUri.substring(stringUri.length() - 10);
+            ParseQuery<PostItem> query = ParseQuery.getQuery(PostItem.class);
+            query.getInBackground(objectId, new GetCallback<PostItem>() {
+                @Override
+                public void done(PostItem object, ParseException e) {
+                    String imageUrl = object.getItemImageUrl();
+                    String username = object.getUser().getUsername();
+                    Integer numberOfLikes = object.getNumberOfLikes();
+                    postDetailUserName.setText(username);
+                    postDetailNumberOfLikes.setText(numberOfLikes.toString());
+                    JSONArray jsonArray = postItem.getJSONArray("comments");
+                    if (jsonArray == null) {
+                        postDetailNumberOfComments.setText("0");
+                    } else {
+                        postDetailNumberOfComments.setText(Integer.toString(jsonArray.length()));
+                    }
+                    if (imageUrl != null) {
+                        Glide.with(PostDetailActivity.this).load(imageUrl).into(postDetailImage);
+                    }
+                }
+            });
         }
+
         queryComments();
     }
 
-    void handleSendText(Intent intent) {
-        String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
-        if (sharedText != null) {
-            // Update UI to reflect text being shared
-        }
-    }
 
     private void queryComments() {
         PostItem postItem = Parcels.unwrap(getIntent().getParcelableExtra("EXTRA_ITEM"));
         JSONArray jsonArray = postItem.getJSONArray("comments");
+
         if (jsonArray == null) {
             return;
         }
@@ -133,17 +150,18 @@ public class PostDetailActivity extends AppCompatActivity {
 
     private void queryComment(String commentId) {
         ParseQuery<CommentItem> query = ParseQuery.getQuery(CommentItem.class);
-        query.addAscendingOrder("createdAt");
+        query.addDescendingOrder("createdAt");
         query.getInBackground(commentId, new GetCallback<CommentItem>() {
             @Override
             public void done(CommentItem object, ParseException e) {
                 if (e == null) {
                     allComments.add(object);
-                    commentAdapter.notifyItemInserted(allComments.size()-1);
+                    commentAdapter.notifyItemInserted(allComments.size() - 1);
                 } else {
                     e.printStackTrace();
                 }
             }
         });
     }
+
 }

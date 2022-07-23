@@ -99,6 +99,27 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.ViewHo
                     context.startActivity(intent);
                 }
             });
+
+            postItemLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    postItemLike.setImageResource(0);
+                }
+            });
+
+            postItemShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    PostItem postItem = postItemList.get(position);
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "mycloset://post" + "/" + postItem.getObjectId());
+                    sendIntent.setType("text/plain");
+                    Intent shareIntent = Intent.createChooser(sendIntent, null);
+                    context.startActivity(shareIntent);
+                }
+            });
         }
 
         public void bind(PostItem item) {
