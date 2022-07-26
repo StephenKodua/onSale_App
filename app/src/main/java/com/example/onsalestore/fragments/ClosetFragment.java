@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.LinearLayout;
 
 import com.example.onsale.R;
@@ -56,8 +58,8 @@ public class ClosetFragment extends Fragment implements ClosetItemMultiSelectLis
         closetItemAdapter = new ClosetItemAdapter(getContext(), allClosetItems);
         closetItemAdapter.setItemClickListener(this);
         rvClosetItems.setAdapter(closetItemAdapter);
-        rvClosetItems.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvClosetItems.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayout.VERTICAL));
+        rvClosetItems.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        rvClosetItems.addItemDecoration(new DividerItemDecoration(getContext(), GridLayout.HORIZONTAL));
         populateClosetItemsList();
 
         return view;
@@ -99,13 +101,12 @@ public class ClosetFragment extends Fragment implements ClosetItemMultiSelectLis
 
     @Override
     public void onMultiSelectUpdated(int count) {
-        if (actionMode == null && count > 0 ) {
+        if (actionMode == null && count > 0) {
             actionMode = getActivity().startActionMode(actionModeCallback);
         }
-        if (actionMode != null && count != 0){
+        if (actionMode != null && count != 0) {
             actionMode.setTitle("You selected " + count);
-        }
-        else{
+        } else {
             actionMode.finish();
         }
     }

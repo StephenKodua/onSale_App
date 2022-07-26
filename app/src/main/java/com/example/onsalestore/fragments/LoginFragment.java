@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.facebook.FacebookSdk;
@@ -42,7 +43,7 @@ import java.util.Objects;
 public class LoginFragment extends Fragment {
 
     //Main login contents
-    private Button btnLaunchLogin;
+    private Button btnMainLogin;
     private EditText etLoginUsername;
     private EditText etLoginPassword;
 
@@ -59,10 +60,12 @@ public class LoginFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+
         //Main login contents
         etLoginUsername = view.findViewById(R.id.etLoginUsername);
         etLoginPassword = view.findViewById(R.id.etLoginPassword);
-        btnLaunchLogin = view.findViewById(R.id.btnLaunchLogin);
+        btnMainLogin = view.findViewById(R.id.btnMainLogin);
 
 
         //Google login contents
@@ -83,7 +86,7 @@ public class LoginFragment extends Fragment {
         });
 
         //sign in with parse
-        btnLaunchLogin.setOnClickListener(new View.OnClickListener() {
+        btnMainLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String username = etLoginUsername.getText().toString();

@@ -90,8 +90,8 @@ public class PostDetailActivity extends AppCompatActivity {
                 Glide.with(this).load(postImage).into(postDetailImage);
             }
             postDetailUserName.setText(postItem.getUser().getUsername());
-            Integer likes = postItem.getNumberOfLikes();
-            postDetailNumberOfLikes.setText(Integer.toString(likes));
+            JSONArray jsonArrayLikeUsers = postItem.getJSONArray("likeUserNames");
+            postDetailNumberOfLikes.setText(Integer.toString(jsonArrayLikeUsers.length()));
             JSONArray jsonArray = postItem.getJSONArray("comments");
             if (jsonArray == null) {
                 postDetailNumberOfComments.setText("0");

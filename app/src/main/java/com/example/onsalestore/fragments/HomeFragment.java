@@ -64,7 +64,6 @@ public class HomeFragment extends Fragment {
         client.get(nikeApiEndpoint, headers, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
-                Log.d("ItemActivity", "onSuccess");
                 JSONArray jsonArray = json.jsonArray;
 
                 try {

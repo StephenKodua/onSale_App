@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -25,6 +26,8 @@ import com.parse.ParseObject;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -81,17 +84,17 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
             checkBox = itemView.findViewById(R.id.checkBox);
             closetItemCardView = itemView.findViewById(R.id.closetItemCardView);
 
+
             ivPostImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     PostItem postItem = new PostItem(closetItemList.get(getPosition()));
-                    savePost(postItem.getItemImageUrl(), postItem.getUser());
+                    savePost(postItem);
                 }
             });
         }
 
-        private void savePost(String postImageUrl, ParseUser currentUser) {
-            PostItem postItem = new PostItem(closetItemList.get(getPosition()));
+        private void savePost(PostItem postItem) {
             postItem.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
@@ -100,12 +103,8 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
                         return;
                     }
                     Toast.makeText(context.getApplicationContext(), "Item posted successfully!", Toast.LENGTH_LONG).show();
-                    List<String> list = new ArrayList<String>(selectedItems);
                     postItem.setUser();
                     postItem.setItemImageUrl(postItem.getItemImageUrl());
-                    currentUser.add("posts", postItem);
-                    currentUser.saveInBackground();
-
                 }
             });
         }

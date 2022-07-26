@@ -1,79 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="272dp"
+    android:layout_height="match_parent"
     android:background="#ECE8E8"
     tools:context="com.example.onsalestore.activities.ItemDetailActivity">
+
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/closetItemCardView"
         android:layout_width="match_parent"
-        android:layout_height="272dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="272dp">
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ibLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="150dp"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ibRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="150dp"
+                android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScroll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="411dp"
+                android:layout_marginBottom="603dp"
+                android:layout_toLeftOf="@id/ibRight"
+                android:layout_toRightOf="@id/ibLeft"
+                android:fadingEdgeLength="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <ImageView
                 android:id="@+id/ivClosetItemImage"
-                android:layout_width="409dp"
-                android:layout_height="205dp"
+                android:layout_width="219dp"
+                android:layout_height="265dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
                 android:background="@color/white"
                 android:scaleType="fitCenter"
                 android:src="@drawable/jordans"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvClosetItemName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Nike Air Max"
-                android:textColor="#0E0E0E"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivClosetItemImage" />
+                app:layout_constraintTop_toBottomOf="@+id/tvClosetItemName" />
 
             <ImageView
                 android:id="@+id/ivPostImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintStart_toEndOf="@+id/tvClosetItemName"
-                app:layout_constraintTop_toBottomOf="@+id/ivClosetItemImage"
-                app:srcCompat="@drawable/ic_baseline_near_me_24" />
-
-            <ImageView
-                android:id="@+id/ivShareItem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintStart_toEndOf="@+id/ivPostImage"
-                app:layout_constraintTop_toBottomOf="@+id/ivClosetItemImage"
-                app:srcCompat="@drawable/ic_baseline_ios_share_24" />
+                android:layout_marginTop="5dp"
+                app:layout_constraintStart_toEndOf="@+id/tvClosetItemName"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
 
             <ImageView
                 android:id="@+id/checkBox"
-                android:layout_width="53dp"
-                android:layout_height="52dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="4dp"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_baseline_check_circle_24" />
+
+            <TextView
+                android:id="@+id/tvClosetItemName"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginEnd="100dp"
+                android:foregroundGravity="center_vertical|center|center_horizontal"
+                android:gravity="center|center_horizontal|center_vertical"
+                android:text="Nike Air Max"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -82,4 +117,4 @@
     </androidx.cardview.widget.CardView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
