@@ -1,105 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="360dp">
+    android:layout_height="360dp"
+    android:background="#F4E9E9">
 
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/userProfileImage"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/baby"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/postItemCardView"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </de.hdodenhof.circleimageview.CircleImageView>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="360dp">
 
-    <TextView
-        android:id="@+id/tvUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="16dp"
-        android:text="Stephen"
-        android:textColor="#090909"
-        app:layout_constraintStart_toEndOf="@+id/userProfileImage"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/ivUserPost"
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userProfileImage"
-        app:srcCompat="@drawable/baby" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/postItemProfileImage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/avatar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tvTimePosted"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:text="12 mins ago"
-        android:textSize="10sp"
-        app:layout_constraintStart_toEndOf="@+id/userProfileImage"
-        app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
+            </de.hdodenhof.circleimageview.CircleImageView>
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivUserPost"
-        app:srcCompat="@drawable/ic_vector_heart" />
+            <TextView
+                android:id="@+id/postItemUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="16dp"
+                android:text="Stephen"
+                android:textColor="#090909"
+                app:layout_constraintStart_toEndOf="@+id/postItemProfileImage"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/ivUserPost"
-        app:srcCompat="@drawable/ic_baseline_chat_24" />
+            <ImageView
+                android:id="@+id/postItemImage"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_marginBottom="5dp"
+                android:clickable="true"
+                app:layout_constraintBottom_toTopOf="@+id/postItemLike"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/postItemProfileImage"
+                app:srcCompat="@drawable/baby" />
 
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/ivUserPost"
-        app:srcCompat="@drawable/ic_baseline_share_24" />
+            <TextView
+                android:id="@+id/tvPostItemTimePosted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="12 mins ago"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/postItemProfileImage"
+                app:layout_constraintTop_toBottomOf="@+id/postItemUserName" />
 
-    <TextView
-        android:id="@+id/numberOfLikes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="5"
-        android:textColor="#0B0B0B"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            <ImageView
+                android:id="@+id/postItemLike"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:clickable="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/postItemImage"
+                app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:text="likes"
-        android:textColor="#070707"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/numberOfLikes"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            <ImageView
+                android:id="@+id/postItemComment"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:clickable="true"
+                app:layout_constraintStart_toEndOf="@+id/postItemLike"
+                app:layout_constraintTop_toBottomOf="@+id/postItemImage"
+                app:srcCompat="@drawable/ic_baseline_chat_bubble_outline_24" />
+
+            <ImageView
+                android:id="@+id/postItemShare"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintStart_toEndOf="@+id/postItemComment"
+                app:layout_constraintTop_toBottomOf="@+id/postItemImage"
+                app:srcCompat="@drawable/ic_baseline_ios_share_24" />
+
+            <TextView
+                android:id="@+id/postItemNumberOfLikes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="5"
+                android:textColor="#0B0B0B"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/postItemLike" />
+
+            <TextView
+                android:id="@+id/postDetailLikes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="likes"
+                android:textColor="#070707"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/postItemNumberOfLikes"
+                app:layout_constraintTop_toBottomOf="@+id/postItemLike" />
+
+            <TextView
+                android:id="@+id/postItemComments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="comments"
+                android:textColor="#070707"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/postItemNumberOfComments"
+                app:layout_constraintTop_toBottomOf="@+id/postItemComment" />
+
+            <TextView
+                android:id="@+id/postItemNumberOfComments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="10"
+                android:textColor="#0B0B0B"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/postDetailLikes"
+                app:layout_constraintTop_toBottomOf="@+id/postItemComment" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

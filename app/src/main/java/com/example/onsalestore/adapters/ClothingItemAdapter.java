@@ -6,10 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -41,6 +43,8 @@ public class ClothingItemAdapter extends RecyclerView.Adapter<ClothingItemAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ClothingItem item = itemsList.get(position);
         holder.bind(item);
+        holder.homeItemCardView.startAnimation(AnimationUtils.loadAnimation(holder.homeItemCardView.getContext(),
+                R.anim.anim_sliding));
     }
 
     @Override
@@ -52,12 +56,14 @@ public class ClothingItemAdapter extends RecyclerView.Adapter<ClothingItemAdapte
         private TextView tvClothingName;
         private TextView tvClothingPrice;
         private ImageView ivClothingImage;
+        private CardView homeItemCardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvClothingName = itemView.findViewById(R.id.tvClothingName);
             tvClothingPrice = itemView.findViewById(R.id.tvClothingPrice);
             ivClothingImage = itemView.findViewById(R.id.ivClothingImage);
+            homeItemCardView = itemView.findViewById(R.id.homeItemCardView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

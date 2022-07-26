@@ -3,24 +3,27 @@ package com.example.onsalestore.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toolbar;
+import android.widget.LinearLayout;
 
 import com.example.onsale.R;
 import com.example.onsalestore.adapters.ClosetItemAdapter;
 
 import com.example.onsalestore.objects.ClosetItem;
-import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -30,15 +33,17 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClosetFragment extends Fragment {
+public class ClosetFragment extends Fragment implements ClosetItemMultiSelectListener {
 
     private RecyclerView rvClosetItems;
     protected ClosetItemAdapter closetItemAdapter;
-    protected List<ClosetItem> allClosetItems;
+    protected List<ClosetItem> allClosetItems, selectedList;
+    private ActionMode actionMode;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -47,13 +52,17 @@ public class ClosetFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_closet, container, false);
         rvClosetItems = view.findViewById(R.id.rvClosetItems);
         allClosetItems = new ArrayList<>();
+        selectedList = new ArrayList<>();
         closetItemAdapter = new ClosetItemAdapter(getContext(), allClosetItems);
+        closetItemAdapter.setItemClickListener(this);
         rvClosetItems.setAdapter(closetItemAdapter);
         rvClosetItems.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvClosetItems.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayout.VERTICAL));
         populateClosetItemsList();
 
         return view;
     }
+
 
     private void populateClosetItemsList() {
         ParseUser currentUser = ParseUser.getCurrentUser();
@@ -87,4 +96,47 @@ public class ClosetFragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onMultiSelectUpdated(int count) {
+        if (actionMode == null && count > 0 ) {
+            actionMode = getActivity().startActionMode(actionModeCallback);
+        }
+        if (actionMode != null && count != 0){
+            actionMode.setTitle("You selected " + count);
+        }
+        else{
+            actionMode.finish();
+        }
+    }
+
+    private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
+
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+
+            MenuInflater inflater = mode.getMenuInflater();
+            inflater.inflate(R.menu.menu_post_or_delete, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false; // Return false if nothing is done
+        }
+
+        // Called when the user selects a contextual menu item
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            //TODO: check for post
+            return false;
+        }
+
+        // Called when the user exits the action mode
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            actionMode = null;
+        }
+    };
+
 }

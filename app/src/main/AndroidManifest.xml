@@ -17,10 +17,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnSale"
         tools:targetApi="31">
+
+        <activity
+            android:name="com.example.onsalestore.activities.PostDetailActivity"
+            android:exported="true"
+            android:parentActivityName="com.example.onsalestore.activities.PostDetailActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:scheme="mycloset"
+                    android:host="post">
+                </data>
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name="com.example.onsalestore.activities.WriteCommentActivity"
+            android:exported="true"
+            android:parentActivityName="com.example.onsalestore.activities.PostDetailActivity"/>
         <activity
             android:name="com.example.onsalestore.activities.ItemDetailActivity"
             android:exported="false"
-            android:parentActivityName="com.example.onsalestore.activities.MainActivity"/>
+            android:parentActivityName="com.example.onsalestore.activities.MainActivity" />
         <activity
             android:name="com.example.onsalestore.activities.MainActivity"
             android:exported="false" />
