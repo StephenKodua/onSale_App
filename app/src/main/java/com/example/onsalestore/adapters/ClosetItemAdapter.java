@@ -105,6 +105,7 @@ public class ClosetItemAdapter extends RecyclerView.Adapter<ClosetItemAdapter.Vi
                     Toast.makeText(context.getApplicationContext(), "Item posted successfully!", Toast.LENGTH_LONG).show();
                     postItem.setUser();
                     postItem.setItemImageUrl(postItem.getItemImageUrl());
+                    postItem.saveInBackground();
                 }
             });
         }

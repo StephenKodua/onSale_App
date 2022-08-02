@@ -91,7 +91,12 @@ public class PostDetailActivity extends AppCompatActivity {
             }
             postDetailUserName.setText(postItem.getUser().getUsername());
             JSONArray jsonArrayLikeUsers = postItem.getJSONArray("likeUserNames");
-            postDetailNumberOfLikes.setText(Integer.toString(jsonArrayLikeUsers.length()));
+            if (jsonArrayLikeUsers == null){
+                postDetailNumberOfLikes.setText("0");
+            }else{
+                postDetailNumberOfLikes.setText(Integer.toString(jsonArrayLikeUsers.length()));
+            }
+
             JSONArray jsonArray = postItem.getJSONArray("comments");
             if (jsonArray == null) {
                 postDetailNumberOfComments.setText("0");

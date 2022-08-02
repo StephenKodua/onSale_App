@@ -35,20 +35,6 @@ public class LaunchFragment extends Fragment {
         btnLaunchLogin = view.findViewById(R.id.btnLaunchLogin);
         btnLaunchSignup = view.findViewById(R.id.btnLaunchSignup);
 
-        btnLaunchLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.loginFragmentContainer, new LoginFragment()).addToBackStack("tag").commit();
-            }
-        });
-
-        btnLaunchSignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.loginFragmentContainer, new SignupFragment()).addToBackStack("tag").commit();
-            }
-        });
-
         return view;
     }
 

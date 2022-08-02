@@ -22,33 +22,34 @@ import com.parse.SignUpCallback;
 
 public class SignupFragment extends Fragment {
 
-    private Button btnSignup;
-    private EditText etSignupUsername, etSignupPassword, etPasswordConfirmation;
+    private Button SignUpButton;
+    private EditText etSignUpUsername, etSignUpPassword, etConfirmUpPassword;
+    float v = 0;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signup, container, false);
 
-        etSignupUsername = view.findViewById(R.id.etSignupUsername);
-        etSignupPassword = view.findViewById(R.id.etSignupPassword);
-        etPasswordConfirmation = view.findViewById(R.id.etSignupPassword);
-        btnSignup = view.findViewById(R.id.btnSignup);
+        etSignUpUsername = view.findViewById(R.id.etSignUpUsername);
+        etSignUpPassword = view.findViewById(R.id.etSignUpPassword);
+        etConfirmUpPassword = view.findViewById(R.id.etConfirmUpPassword);
+        SignUpButton = view.findViewById(R.id.SignUpButton);
 
-        btnSignup.setOnClickListener(new View.OnClickListener() {
+        SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ParseUser user = new ParseUser();
-                String username = etSignupUsername.getText().toString();
-                String password = etSignupPassword.getText().toString();
-                String passwordConfirmationInput = etPasswordConfirmation.getText().toString();
+                String username = etSignUpUsername.getText().toString();
+                String password = etSignUpPassword.getText().toString();
+                String passwordConfirmationInput = etConfirmUpPassword.getText().toString();
                 if (password.equals(passwordConfirmationInput)) {
                     user.setUsername(username);
                     user.setPassword(password);
                 } else {
                     //TODO
                     // Take appropriate action
-                    etPasswordConfirmation.setError("Password does not match");
+                    etConfirmUpPassword.setError("Password does not match");
                 }
                 user.signUpInBackground(new SignUpCallback() {
                     public void done(ParseException e) {
@@ -63,6 +64,24 @@ public class SignupFragment extends Fragment {
                 });
             }
         });
+
+
+        etSignUpUsername.setTranslationX(800);
+        etSignUpPassword.setTranslationX(800);
+        etConfirmUpPassword.setTranslationX(800);
+        SignUpButton.setTranslationX(800);
+
+        etSignUpUsername.setAlpha(v);
+        etSignUpPassword.setAlpha(v);
+        etConfirmUpPassword.setAlpha(v);
+        SignUpButton.setAlpha(v);
+
+        etSignUpUsername.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
+        etSignUpPassword.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
+        etConfirmUpPassword.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
+        SignUpButton.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
+
+
         return view;
     }
 

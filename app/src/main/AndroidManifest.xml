@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+
     <application
         android:name="com.example.onsalestore.applications.ParseApplication"
         android:allowBackup="true"
@@ -17,27 +18,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnSale"
         tools:targetApi="31">
+        <activity
+            android:name="com.example.onsalestore.activities.IntroductoryActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
 
         <activity
             android:name="com.example.onsalestore.activities.PostDetailActivity"
             android:exported="true"
             android:parentActivityName="com.example.onsalestore.activities.PostDetailActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="mycloset"
-                    android:host="post">
+                    android:host="post"
+                    android:scheme="mycloset">
                 </data>
+
             </intent-filter>
 
         </activity>
+
         <activity
             android:name="com.example.onsalestore.activities.WriteCommentActivity"
             android:exported="true"
-            android:parentActivityName="com.example.onsalestore.activities.PostDetailActivity"/>
+            android:parentActivityName="com.example.onsalestore.activities.PostDetailActivity" />
         <activity
             android:name="com.example.onsalestore.activities.ItemDetailActivity"
             android:exported="false"
@@ -48,12 +61,9 @@
         <activity
             android:name="com.example.onsalestore.activities.AuthenticationActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

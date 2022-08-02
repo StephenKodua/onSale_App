@@ -8,8 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
+
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,11 +17,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.onsale.R;
 import com.example.onsalestore.activities.MainActivity;
-import com.example.onsalestore.activities.MainActivity;
+
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -46,6 +46,8 @@ public class LoginFragment extends Fragment {
     private Button btnMainLogin;
     private EditText etLoginUsername;
     private EditText etLoginPassword;
+    private TextView etForgetPassword;
+    float v = 0;
 
     //Google login contents
     private GoogleSignInOptions googleSignInOptions;
@@ -65,25 +67,26 @@ public class LoginFragment extends Fragment {
         //Main login contents
         etLoginUsername = view.findViewById(R.id.etLoginUsername);
         etLoginPassword = view.findViewById(R.id.etLoginPassword);
+        etForgetPassword = view.findViewById(R.id.etForgetPassword);
         btnMainLogin = view.findViewById(R.id.btnMainLogin);
 
 
-        //Google login contents
-        ivGoogleLogin = view.findViewById(R.id.ivGoogleLogin);
-        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .requestId()
-                .build();
-        googleSignInClient = GoogleSignIn.getClient(getContext(), googleSignInOptions);
-
-
-        //sign in with google
-        ivGoogleLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                googleSignIn();
-            }
-        });
+//        //Google login contents
+//        ivGoogleLogin = view.findViewById(R.id.ivGoogleLogin);
+//        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestEmail()
+//                .requestId()
+//                .build();
+//        googleSignInClient = GoogleSignIn.getClient(getContext(), googleSignInOptions);
+//
+//
+//        //sign in with google
+//        ivGoogleLogin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                googleSignIn();
+//            }
+//        });
 
         //sign in with parse
         btnMainLogin.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +97,26 @@ public class LoginFragment extends Fragment {
                 loginUser(username, password);
             }
         });
+
+
+        etLoginUsername.setTranslationX(800);
+        etLoginPassword.setTranslationX(800);
+        etForgetPassword.setTranslationX(800);
+        btnMainLogin.setTranslationX(800);
+
+        etLoginUsername.setAlpha(v);
+        etLoginPassword.setAlpha(v);
+        etForgetPassword.setAlpha(v);
+        btnMainLogin.setAlpha(v);
+
+        etLoginUsername.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
+        etLoginPassword.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
+        etForgetPassword.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
+        btnMainLogin.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
+
+
         return view;
+
     }
 
     @Override

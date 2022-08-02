@@ -58,8 +58,8 @@ public class ClosetFragment extends Fragment implements ClosetItemMultiSelectLis
         closetItemAdapter = new ClosetItemAdapter(getContext(), allClosetItems);
         closetItemAdapter.setItemClickListener(this);
         rvClosetItems.setAdapter(closetItemAdapter);
-        rvClosetItems.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        rvClosetItems.addItemDecoration(new DividerItemDecoration(getContext(), GridLayout.HORIZONTAL));
+        rvClosetItems.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        rvClosetItems.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         populateClosetItemsList();
 
         return view;

@@ -191,7 +191,14 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.ViewHo
 
             JSONArray jsonArrayLikeUsers = item.getJSONArray("likeUserNames");
 
-            numberOfLikes.setText(Integer.toString(jsonArrayLikeUsers.length()));
+            if (jsonArrayLikeUsers == null){
+                numberOfLikes.setText("0");
+
+            } else{
+                numberOfLikes.setText(Integer.toString(jsonArrayLikeUsers.length()));
+            }
+
+
 
             String currentUserName = ParseUser.getCurrentUser().getUsername();
             if (jsonArrayLikeUsers == null) {

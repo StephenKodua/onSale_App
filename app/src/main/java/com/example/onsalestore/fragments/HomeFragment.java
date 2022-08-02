@@ -52,12 +52,12 @@ public class HomeFragment extends Fragment {
     }
 
     private void requestNikeItems() {
-        String nikeApiEndpoint = "https://nike-products.p.rapidapi.com/shoes";
+        String nikeApiEndpoint = "https://shoes-collections.p.rapidapi.com/shoes";
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         RequestHeaders headers = new RequestHeaders();
-        headers.put("X-RapidAPI-Key", "2466bdbd3emsh59aaea237b7c6d5p13be08jsne6c71d3803ce");
-        headers.put("X-RapidAPI-Host", "nike-products.p.rapidapi.com");
+        headers.put("X-RapidAPI-Key","aa616bd4fdmshf4e3b2558774cdcp18d333jsnab818655e853");
+        headers.put("X-RapidAPI-Host", "shoes-collections.p.rapidapi.com");
 
         allItems.clear(); //clear previous items before requesting new
 
@@ -66,16 +66,20 @@ public class HomeFragment extends Fragment {
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 JSONArray jsonArray = json.jsonArray;
 
+                if (jsonArray == null) {
+                    return;
+                }
+
                 try {
                     List<ClothingItem> items = new ArrayList<>();
                     for (int i = 0; i < jsonArray.length(); ++i) {
                         JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-                        String productImageUrl = jsonObject.getString("img");
-                        String productSource = jsonObject.getString("source");
-                        String productName = jsonObject.getString("title");
-                        String productPrice = jsonObject.getString("price");
-                        String productUrl = jsonObject.getString("url");
-                        ClothingItem productItem = new ClothingItem(productName, productImageUrl, productPrice, productSource, productUrl, null);
+                        String productImageUrl = jsonObject.getString("image");
+                        //String productSource = jsonObject.getString("source");
+                        String productName = jsonObject.getString("name");
+                        String productPrice = "$" + jsonObject.getString("price");
+                        //String productUrl = jsonObject.getString("url");
+                        ClothingItem productItem = new ClothingItem(productName, productImageUrl, productPrice, null, null, null);
                         items.add(productItem);
                     }
                     allItems.addAll(items);
