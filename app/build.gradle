@@ -5,7 +5,7 @@ task wrapper(type: Wrapper){
     gradleVersion = '7.2'
 }
 android {
-    compileSdk 32
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.example.onsale"

@@ -155,7 +155,7 @@ public class PostDetailActivity extends AppCompatActivity {
 
     private void queryComment(String commentId) {
         ParseQuery<CommentItem> query = ParseQuery.getQuery(CommentItem.class);
-        query.addDescendingOrder("createdAt");
+        query.addAscendingOrder("createdAt");
         query.getInBackground(commentId, new GetCallback<CommentItem>() {
             @Override
             public void done(CommentItem object, ParseException e) {
