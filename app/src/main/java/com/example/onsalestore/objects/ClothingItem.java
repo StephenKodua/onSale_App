@@ -18,8 +18,8 @@ public class ClothingItem {
     public ClothingItem(){
     }
 
-    public ClothingItem(String itemName, String itemImageUrl, String itemPrice, String itemSource, String
-                        itemUrl, ParseUser user){
+    public ClothingItem(String itemName, String itemImageUrl, String itemPrice, String itemSource,
+                        String itemUrl, ParseUser user) {
 
         this.itemName = itemName;
         this.itemImageUrl = itemImageUrl;
@@ -32,8 +32,6 @@ public class ClothingItem {
     public String getItemName(){return itemName;}
 
     public ParseUser getUser(){return user;}
-
-    //public void setUser(ParseUser user){put (KEY_USER, user);}
 
     public String getItemImageUrl(){return itemImageUrl;}
 
